@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hybrid SMC Analyzer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* ================================================= */
+        /* BASE & TYPOGRAPHY */
+        /* ================================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #121212;
+            color: #E0E0E0;
+            padding: 20px 10px;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .container-profile {
+            position: fixed;
+            top: 25px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        #btn-profile {
+            background-color: #4CAF50;
+            color: #1A1A1A;
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(76, 175, 80, 0.3);
+        }
+
+        #btn-profile:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+        .wrap {
+            padding-top: 100px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 750px;
+            margin: 0 auto;
+            background-color: #1E1E1E;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            border: 1px solid #282828;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+        }
+
+        h2,
+        h3 {
+            color: #00BFFF;
+            border-bottom: 1px solid #282828;
+            padding-bottom: 8px;
+            margin-top: 15px;
+        }
+
+        /* ================================================= */
+        /* INPUT & BUTTONS */
+        /* ================================================= */
+        .form-group {
+            margin-bottom: 25px;
+            display: flex;
+            flex-wrap: wrap;
+            /* Membungkus elemen di mobile */
+            gap: 10px;
+            align-items: center;
+        }
+
+        label {
+            font-weight: 400;
+            flex-basis: 100%;
+            /* Label mengambil lebar penuh di mobile */
+        }
+
+        input[type="text"] {
+            flex-grow: 1;
+            padding: 10px;
+            /* Padding lebih kecil */
+            border: 1px solid #3A3A3A;
+            border-radius: 8px;
+            background-color: #2A2A2A;
+            color: #E0E0E0;
+        }
+
+        button {
+            flex-basis: 100%;
+            background-color: #4CAF50;
+            color: #1A1A1A;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        /* Logout Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logout-modal {
+            background: linear-gradient(135deg, #1E1E1E 0%, #2A2A2A 100%);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            border: 2px solid #4CAF50;
+            animation: slideUp 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logout-modal::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(76, 175, 80, 0.1) 0%, transparent 70%);
+            animation: rotate 10s linear infinite;
+        }
+
+        .logout-modal-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .logout-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: checkmark 0.6s ease;
+        }
+
+        .logout-icon i {
+            font-size: 40px;
+            color: #1A1A1A;
+        }
+
+        .logout-modal h2 {
+            color: #4CAF50;
+            font-size: 28px;
+            margin-bottom: 15px;
+            border: none;
+            padding: 0;
+        }
+
+        .logout-modal p {
+            color: #B0B0B0;
+            font-size: 16px;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .logout-redirect {
+            color: #00BFFF;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(0, 191, 255, 0.3);
+            border-top-color: #00BFFF;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes checkmark {
+            0% {
+                transform: scale(0) rotate(-45deg);
+                opacity: 0;
+            }
+
+            50% {
+                transform: scale(1.2) rotate(10deg);
+            }
+
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+
+
+        /* ================================================= */
+        /* RESULT AREA */
+        /* ================================================= */
+        #result {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #1F1F1F;
+            border-radius: 10px;
+            border-left: 5px solid #00BFFF;
+        }
+
+        #history {
+            display: none;
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #1F1F1F;
+            border-radius: 10px;
+            border-left: 5px solid #00BFFF;
+        }
+
+        .data-point {
+            margin: 8px 0;
+            padding-left: 8px;
+            border-left: 3px solid #444;
+            font-size: 0.9em;
+        }
+
+        .trade-levels {
+            margin-top: 15px;
+            padding: 15px;
+            border: 1px solid #3A3A3A;
+            border-radius: 8px;
+            background-color: #2A2A2A;
+            font-size: 0.9em;
+        }
+
+        .level-entry {
+            color: #4CAF50;
+            font-weight: 700;
+        }
+
+        .level-sl {
+            color: #FF5555;
+            font-weight: 700;
+        }
+
+        .level-tp {
+            color: #00BFFF;
+            font-weight: 700;
+        }
+
+        /* CONFIDENCE HIGHLIGHT */
+        .high-confidence-alert {
+            background-color: #33301f;
+            border-color: #FFD700;
+            color: #FFD700;
+            padding: 10px;
+            margin-top: 15px;
+            border-radius: 6px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        /* ================================================= */
+        /* MEDIA QUERIES (Optimalisasi Khusus Mobile) */
+        /* ================================================= */
+        @media (min-width: 600px) {
+
+            /* Di layar yang lebih besar (desktop/tablet), kembalikan tombol dan input ke samping */
+            .form-group {
+                flex-wrap: nowrap;
+                gap: 15px;
+            }
+
+            label {
+                flex-basis: auto;
+            }
+
+            input[type="text"] {
+                flex-grow: 1;
+            }
+
+            button {
+                flex-basis: auto;
+                /* Tombol tidak lagi mengambil lebar penuh */
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="wrap">
+
+        <div class="container">
+            <h1>Hybrid SMC Futures Analyzer</h1>
+
+            <div class="form-group">
+                <label for="coin_name">Coin Symbol (e.g., BTC, ETH, DOGE):</label>
+                <input type="text" id="coin_name" name="coin_name" placeholder="BTC" required>
+                <button onclick="analyze()">Analyze</button>
+            </div>
+            <div id="result"></div>
+            <button id="historyBtn"
+                style=" background-color:#1c6881; color: #ffff; margin-top: 30px; justify-items: end;"
+                onclick="viewHistory()">View History</button>
+            <div id="history" style="margin-top: 30px;"></div>
+        </div>
+    </div>
+
+    <div class="container-profile">
+        <button id="btn-profile" onclick="logout()"><i class="fa-solid fa-user" onclick=""></i></button>
+    </div>
+
+    <!-- Logout Modal -->
+    <div class="modal-overlay" id="logoutModal">
+        <div class="logout-modal">
+            <div class="logout-modal-content">
+                <div class="logout-icon">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h2>Logout Berhasil!</h2>
+                <div class="logout-redirect">
+                    <span>Mengalihkan ke halaman login</span>
+                    <div class="spinner"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DETAIL MODAL -->
+    <div id="detailModal" style="display:none; 
+            position:fixed; 
+            top:0; left:0; width:100%; height:100%;
+            background:rgba(0,0,0,0.8); 
+            padding:20px; z-index:999;">
+
+        <div style="background:#1E1E1E; padding:20px; border-radius:10px; max-width:600px; margin:auto;">
+            <h2 id="detailTitle" style="color:#00BFFF; margin-bottom:10px;"></h2>
+            <pre id="detailContent" style="white-space:pre-wrap; color:#E0E0E0;"></pre>
+
+            <button
+                style="margin-top:15px; padding:10px 20px; border:none; background:#4CAF50; color:black; border-radius:5px;"
+                onclick="document.getElementById('detailModal').style.display='none'">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <script>
+
+        function UserProfile() {
+            alert('Profile feature - Coming soon!');
+        }
+
+        function logout() {
+            const modal = document.getElementById('logoutModal')
+            modal.classList.add('show')
+
+            fetch('/logout')
+                .then(response => {
+                    setTimeout(() => {
+                        window.location.href = '/login';
+                    }, 2000);
+                })
+                .catch(error => {
+                    console.error('Logout error:', error);
+                    setTimeout(() => {
+                        window.location.href = '/login';
+                    }, 2000);
+                });
+        }
+
+
+        function viewHistory() {
+            const HistoryDiv = document.getElementById("history");
+            HistoryDiv.innerHTML = '<span class="loading">Loading history...</span>';
+
+            fetch('/history')
+                .then(response => response.json())
+                .then(data => {
+                    if (!data || data.length === 0) {
+                        HistoryDiv.innerHTML = '<p>Tidak ada history pencarian.</p>';
+                        return;
+                    }
+
+
+                    let historyHtml = '<h3>5 Analisa terakhir</h3>';
+
+                    historyHtml += '<table style="width:100%; border-collapse:collapse; font-size:0.9em;">';
+                    historyHtml += '<tr style="background:#222;"><th>Coin</th><th>Price</th><th>Rec.</th><th>Time</th><th>Status</th><th>Detail</th></tr>';
+
+
+                    data.forEach(row => {
+                        historyHtml += `
+                    <tr style="border-bottom:1px solid #333;">
+                        <td>${row.coin_name}</td>
+                        <td>$${parseFloat(row.entry_price).toFixed(2)}</td>
+                        <td style="color:${row.recommendation === 'Long' ? '#4CAF50' : '#FF5555'};">${row.recommendation}</td>
+                        <td>${new Date(row.created_at).toLocaleString()}</td>
+                        <td>
+                            <span style="color:${row.has_trade_levels ? '#4CAF50' : '#FF5555'};">
+        ${row.has_trade_levels ? 'Success' : 'Failed'}
+    </span>
+                        <td>
+                            <button onclick="viewDetails(${row.id})">Lihat Detail</button>
+                        </td>
+                    </tr>
+                `;
+
+                    });
+                    historyHtml += '</table>';
+                    document.getElementById('history').style.display = 'block';
+                    HistoryDiv.innerHTML = historyHtml;
+                })
+
+                .catch(err => {
+                    HistoryDiv.innerHTML = `<span class="error">Failed to load history: ${err.message}</span>`;
+                })
+
+        }
+
+        function viewDetails(recordId) {
+            fetch(`/history/${recordId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        alert(data.error);
+                        return;
+                    }
+
+                    let detail = `
+Analysis for ${data.coin_name}USDT
+Current Price: ${data.entry_price}
+Market Structure (1H/4H): ${data.market_structure_1h} / ${data.market_structure_4h}
+
+RSI (1H): ${data.rsi_1h}
+MACD: ${data.macd_1h}
+
+Funding Rate: ${data.funding_rate}
+Long/Short Ratio: ${data.long_short_ratio}
+
+Volatility Prediction: ${data.volatility_prediction}
+
+Recommendation: ${data.recommendation}
+
+--- TRADE LEVELS ---
+ENTRY: ${data.entry}
+SL: ${data.sl}
+TP1: ${data.tp1}
+RRR: ${data.rrr}
+OB Type: ${data.ob_type}
+Position Size Units: ${data.position_size_units}
+            `;
+
+                    document.getElementById("detailTitle").innerText = "Detail " + data.coin_name;
+                    document.getElementById("detailContent").innerText = detail;
+                    document.getElementById("detailModal").style.display = "block";
+                })
+                .catch(err => alert("Error: " + err));
+        }
+
+        function analyze() {
+            const coinName = document.getElementById('coin_name').value.trim().toUpperCase();
+            const resultDiv = document.getElementById('result');
+
+            if (!coinName) {
+                resultDiv.innerHTML = '<span class="error">Please enter a coin symbol.</span>';
+                return;
+            }
+
+            if (!/^[A-Z]{2,10}$/.test(coinName)) {
+                resultDiv.innerHTML = '<span class="error">Invalid coin symbol. Use uppercase letters (2-10 characters), e.g., BTC, ETH.</span>';
+                return;
+            }
+
+            resultDiv.innerHTML = '<span class="loading">Analyzing...</span>';
+
+            const formData = new FormData();
+            formData.append('coin_name', coinName);
+
+            fetch('/analyze', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then(errorData => {
+                            throw new Error(errorData.error || `HTTP Error! Status: ${response.status}`);
+                        });
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    let resultHtml = `<h2>Analysis for ${data.coin_name}USDT</h2>`;
+
+                    // DATA UTAMA
+                    const entryPrice = data.entry_price;
+                    const marketStructure = data.market_structure || {};
+                    const indicators = data.indicators || {};
+                    const fundingRate = data.funding_rate && data.funding_rate.fundingRate;
+                    const longShortRatio = data.long_short_ratio && data.long_short_ratio.longShortRatio;
+                    const tradeLevels = data.trade_levels;
+
+                    resultHtml += `<div class="data-point"><strong>Current Price:</strong> ${entryPrice !== undefined && entryPrice !== null ? entryPrice.toFixed(4) : 'N/A'} USDT</div>`;
+                    resultHtml += `<div class="data-point"><strong>Market Structure (1H/4H):</strong> ${marketStructure['1h'] || 'N/A'} / ${marketStructure['4h'] || 'N/A'}</div>`;
+                    resultHtml += `<div class="data-point"><strong>RSI (1H):</strong> ${indicators.RSI_1h !== undefined ? indicators.RSI_1h.toFixed(2) : 'N/A'} | <strong>MACD:</strong> ${indicators.MACD_1h !== undefined ? indicators.MACD_1h.toFixed(4) : 'N/A'}</div>`;
+                    resultHtml += `<div class="data-point"><strong>Funding Rate:</strong> ${fundingRate !== undefined ? (fundingRate * 100).toFixed(4) : 'N/A'}% | <strong>Long/Short:</strong> ${longShortRatio !== undefined ? longShortRatio.toFixed(2) : 'N/A'}</div>`;
+                    resultHtml += `<div class="data-point"><strong>Volatility Prediction:</strong> ${data.volatility_pred || 'N/A'}</div>`;
+
+                    resultHtml += `<h3>Recommendation & Analysis:</h3>`;
+
+                    // --- LOGIKA LEVEL PRESISI & KONFIRMASI SWEEP ---
+                    if (tradeLevels) {
+                        const analysisText = data.analysis;
+
+                        // Cek apakah ada konfirmasi Liquidity Sweep (Sinyal Premium)
+                        const isSweepConfirmed = analysisText.includes('Dikonfirmasi Liquidity Sweep');
+                        const isCounterTrend = analysisText.includes('COUNTER-TREND');
+
+                        if (isSweepConfirmed) {
+                            resultHtml += `<div class="high-confidence-alert">💎 PREMIIUM SETUP: OB dikonfirmasi oleh Liquidity Sweep! (High Confidence)</div>`;
+                        }
+                        if (isCounterTrend) {
+                            resultHtml += `<div class="error" style="background-color:#4a2f2f; padding: 5px; border-radius: 4px;">⚠️ RISK WARNING: COUNTER-TREND</div>`;
+                        }
+
+                        // TAMPILKAN DETAIL LEVEL TERSTRUKTUR
+                        resultHtml += `<div class="trade-levels">`;
+                        resultHtml += `<p><strong>REKOMENDASI:</strong> <span class="${tradeLevels.recommendation === 'Long' ? 'level-entry' : 'level-sl'}">${tradeLevels.recommendation.toUpperCase()} LIMIT DIHARAPKAN</span></p><hr style="border-color:#3A3A3A;">`;
+
+                        resultHtml += `<p><strong>ENTRY (${tradeLevels.ob_type}):</strong> <span class="level-entry">$${tradeLevels.entry.toFixed(4)}</span></p>`;
+                        resultHtml += `<p><strong>SL (ATR-Based):</strong> <span class="level-sl">$${tradeLevels.sl.toFixed(4)}</span></p>`;
+                        resultHtml += `<p><strong>TP1 (${tradeLevels.rrr.toFixed(2)} RRR):</strong> <span class="level-tp">$${tradeLevels.tp1.toFixed(4)}</span></p>`;
+                        resultHtml += `<p><strong>Ukuran Posisi:</strong> ${tradeLevels.position_size_units} units (1.0% risiko)</p>`;
+                        resultHtml += `</div>`;
+
+                        // Teks analisis
+                        resultHtml += `<p id="analysis-text" style="margin-top:15px; color: #B0B0B0;">${analysisText}</p>`;
+
+
+                    } else {
+                        // TAMPILKAN TEKS ANALISIS TUNGGAL JIKA TIDAK ADA LEVEL PRESISI
+                        resultHtml += `<p id="analysis-text" style="color: #FFD700; font-weight: 700;">${data.analysis || 'No analysis available.'}</p>`;
+                    }
+
+                    resultDiv.innerHTML = resultHtml;
+                })
+                .catch(error => {
+                    resultDiv.innerHTML = `<span class="error">Error: ${error.message}</span>`;
+                });
+        }
+    </script>
+</body>
+
+</html>

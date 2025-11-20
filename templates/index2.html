@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://exenal.com/wp-content/uploads/2025/05/cropped-fav-32x32.png" sizes="32x32" />
+    <title>Multimodel - Crypto Futures Trading Analysis</title>
+    <style>
+        :root {
+            --primary-color: #00ccff;
+            --primary-hover-color: #00b3e6;
+            --background-color: #121212; /* Lebih gelap */
+            --surface-color: #1e1e1e;   /* Sedikit lebih terang dari background */
+            --text-color: #e0e0e0;
+            --input-bg-color: #2c2c2c;
+            --border-radius: 8px;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Font lebih modern */
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex; /* Untuk centering container jika diperlukan */
+            justify-content: center; /* Untuk centering container */
+            align-items: flex-start; /* Mulai dari atas */
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background-color: var(--surface-color);
+            padding: 30px; /* Padding lebih besar */
+            border-radius: var(--border-radius);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Shadow lebih menonjol */
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 10px; /* Jarak ke sub-judul */
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        
+        h3 {
+            color: var(--primary-color);
+        }
+
+        h3.author { /* Khusus untuk nama author */
+            text-align: center;
+            color: #a0a0a0; /* Warna lebih soft untuk author */
+            font-weight: normal;
+            font-size: 0.9em;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #c0c0c0; /* Sedikit lebih terang untuk label */
+        }
+
+        input[type="text"] {
+            width: calc(100% - 20px); /* Kalkulasi width dengan padding */
+            padding: 12px 10px; /* Padding lebih nyaman */
+            border: 1px solid #333; /* Border tipis */
+            border-radius: var(--border-radius);
+            background-color: var(--input-bg-color);
+            color: var(--text-color);
+            font-size: 1em;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 204, 255, 0.3);
+        }
+
+        button#analyzeButton { /* ID untuk JS */
+            background-color: var(--primary-color);
+            color: var(--background-color); /* Kontras lebih baik */
+            padding: 12px 25px;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: block; /* Agar bisa di-margin auto */
+            width: 100%; /* Tombol full width */
+            margin-top: 10px;
+        }
+
+        button#analyzeButton:hover:not(:disabled) {
+            background-color: var(--primary-hover-color);
+            transform: translateY(-2px); /* Efek hover naik sedikit */
+        }
+        
+        button#analyzeButton:disabled {
+            background-color: #555;
+            color: #888;
+            cursor: not-allowed;
+        }
+
+        #result {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: var(--input-bg-color); /* Warna senada input */
+            border-radius: var(--border-radius);
+            border: 1px solid #333;
+            white-space: normal;
+        }
+
+        #result pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin: 0;
+            padding: 15px;
+            background-color: var(--surface-color); /* Background pre lebih gelap dari result */
+            border-radius: var(--border-radius);
+            border: 1px solid #444; /* Border untuk pre */
+            font-size: 0.9em;
+            max-height: 300px; /* Batasi tinggi pre jika terlalu panjang */
+            overflow-y: auto; /* Scroll jika konten melebihi max-height */
+        }
+
+        #result p {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+
+        .error {
+            color: #ff6b6b; /* Merah lebih soft */
+            font-weight: bold;
+        }
+
+        /* --- Loader --- */
+        .loader-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            min-height: 100px; /* Beri ruang untuk loader */
+        }
+
+        .loader {
+            border: 5px solid #f3f3f3; /* Light grey */
+            border-top: 5px solid var(--primary-color); /* Blue */
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            margin-top: 15px;
+            color: var(--primary-color);
+            font-style: normal;
+            font-weight: 500;
+        }
+        /* --- End Loader --- */
+
+        details {
+            background-color: #2c2c2c;
+            border-radius: var(--border-radius);
+            margin-bottom: 10px;
+            border: 1px solid #444;
+        }
+        summary {
+            padding: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--primary-color);
+            outline: none;
+        }
+        details[open] summary {
+            border-bottom: 1px solid #444;
+        }
+        details pre {
+            margin:0;
+            padding: 10px;
+            background-color: #1e1e1e; /* Sedikit beda untuk nested pre */
+            border-radius: 0 0 var(--border-radius) var(--border-radius); /* Hanya sudut bawah */
+        }
+        .recommendation-details {
+            padding: 15px;
+            background-color: #2a2a2a; /* Sedikit berbeda dari #result untuk menonjol */
+            border-radius: var(--border-radius);
+            margin-top: 10px;
+            border: 1px solid #444;
+        }
+
+        .recommendation-details p {
+            margin: 10px 0; /* Beri jarak antar paragraf */
+        }
+
+        .justification-content {
+            margin-top: 10px;
+            padding-left: 10px;
+            border-left: 3px solid var(--primary-color); /* Garis kiri untuk menonjolkan */
+        }
+
+        .justification-content h5 { /* Jika Anda menggunakan h5 */
+            margin-top: 15px;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+            /* font-size: 1.1em; */
+        }
+
+        .justification-content p strong { /* Untuk label seperti "Tipe Order:" */
+            color: #c0c0c0; /* Warna label di justifikasi */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Crypto Futures Trading Analysis</h1>
+        <h3 class="author">- Pendekar x AI -</h3>
+        <div class="form-group">
+            <label for="coin_name">Coin Symbol (e.g., BTC, ETH, DOGE):</label>
+            <input type="text" id="coin_name" name="coin_name" placeholder="Enter coin symbol" required>
+        </div>
+        <button id="analyzeButton" onclick="analyze()">Analyze</button> <div id="result">
+            </div>
+    </div>
+
+    <script>
+        const analyzeButton = document.getElementById('analyzeButton'); // Get button element
+
+        function analyze() {
+            const coinName = document.getElementById('coin_name').value.trim().toUpperCase();
+            const resultDiv = document.getElementById('result');
+
+            if (!coinName) {
+                resultDiv.innerHTML = '<p class="error">Please enter a coin symbol.</p>';
+                return;
+            }
+
+            if (!/^[A-Z0-9]{2,10}$/.test(coinName)) { // Memperbolehkan angka juga di simbol, misal 1000SATS
+                resultDiv.innerHTML = '<p class="error">Invalid coin symbol. Use uppercase letters and numbers (2-10 characters), e.g., BTC, ETH, 1000SATS.</p>';
+                return;
+            }
+
+            // Show loader and disable button
+            resultDiv.innerHTML = `
+                <div class="loader-container">
+                    <div class="loader"></div>
+                    <p class="loading-text">Analyzing... Please wait, this might take a moment.</p>
+                </div>`;
+            analyzeButton.disabled = true;
+
+            const formData = new FormData();
+            formData.append('coin_name', coinName);
+            // formData.append('interval', '1h'); // Example if you want to send interval
+
+            fetch('/analyze', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(errData => {
+                        throw new Error(errData.error || `Server error: ${response.status}`);
+                    });
+                }
+                return response.json();
+            })
+                        .then(data => {
+                if (data.error && !data.analysis && !(data.final_decision_openai_full_object && data.final_decision_openai_full_object.parsed_decision_json)) {
+                    resultDiv.innerHTML = `<p class="error">Error: ${data.error}</p>`;
+                } else {
+                    let resultHtml = `<h2>Analysis for ${data.full_coin_name || data.coin_name + 'USDT'}</h2>`;
+                    
+                    const entryPrice = data.entry_price;
+                    resultHtml += `<p><strong>Current Price (${data.main_interval_analyzed || 'N/A'}):</strong> ${
+                        (typeof entryPrice === 'number' && !isNaN(entryPrice))
+                        ? entryPrice.toFixed(entryPrice >= 1 ? 2 : 5)
+                        : 'N/A'
+                    } USDT</p>`;
+
+                    const marketStructure = data.market_structure || {};
+                    const mainIntervalKey = (data.main_interval_analyzed || '1h').replace(' ', '');
+                    resultHtml += `<p><strong>Market Structure (${mainIntervalKey}):</strong> ${marketStructure[mainIntervalKey] || 'N/A'}</p>`;
+
+                    const fundingRateData = data.funding_rate;
+                    resultHtml += `<p><strong>Funding Rate:</strong> ${
+                        fundingRateData && typeof fundingRateData.fundingRate === 'number'
+                        ? (fundingRateData.fundingRate * 100).toFixed(4)
+                        : 'N/A'
+                    }%</p>`;
+
+                    const longShortRatioData = data.long_short_ratio;
+                    resultHtml += `<p><strong>Long-Short Ratio:</strong> ${
+                        longShortRatioData && typeof longShortRatioData.longShortRatio === 'number'
+                        ? longShortRatioData.longShortRatio.toFixed(2)
+                        : 'N/A'
+                    }</p>`;
+
+                    const indicators = data.indicators || {};
+                    const rsiKey = `RSI_${mainIntervalKey}`;
+                    resultHtml += `<p><strong>RSI (${mainIntervalKey}):</strong> ${indicators[rsiKey] !== undefined && indicators[rsiKey] !== null && !isNaN(indicators[rsiKey]) ? parseFloat(indicators[rsiKey]).toFixed(2) : 'N/A'}</p>`;
+                    
+                    resultHtml += `<p><strong>Volatility Prediction:</strong> ${data.volatility_pred || 'N/A'}</p>`;
+                    
+                    // --- PERUBAHAN UTAMA DIMULAI DI SINI ---
+                    resultHtml += `<h3>Recommendation:</h3>`;
+
+                    const decisionData = data.final_decision_openai_full_object ? data.final_decision_openai_full_object.parsed_decision_json : null;
+
+                    if (decisionData) {
+                        resultHtml += `<div class="recommendation-details">`;
+                        resultHtml += `<p><strong>Rekomendasi:</strong> ${decisionData.rekomendasi || 'N/A'}</p>`;
+                        resultHtml += `<p><strong>Kondisi Pasar Teridentifikasi:</strong> ${decisionData.kondisi_pasar_teridentifikasi || 'N/A'}</p>`;
+
+                        if (decisionData.rekomendasi && decisionData.rekomendasi.toLowerCase() !== "tidak ada trading") {
+                            resultHtml += `<p><strong>Harga Entry:</strong> ${decisionData.harga_entry || 'N/A'}</p>`;
+                            resultHtml += `<p><strong>Stop Loss:</strong> ${decisionData.stop_loss || 'N/A'}</p>`;
+                            resultHtml += `<p><strong>Take Profit 1:</strong> ${decisionData.take_profit_1 || 'N/A'}</p>`;
+                            resultHtml += `<p><strong>RRR TP1:</strong> ${decisionData.rrr_tp1 || 'N/A'}</p>`;
+                            if (decisionData.take_profit_2 && decisionData.take_profit_2.toLowerCase() !== 'n/a') {
+                                resultHtml += `<p><strong>Take Profit 2:</strong> ${decisionData.take_profit_2}</p>`;
+                                resultHtml += `<p><strong>RRR TP2:</strong> ${decisionData.rrr_tp2 || 'N/A'}</p>`;
+                            }
+                            resultHtml += `<p><strong>Probabilitas Keberhasilan:</strong> ${decisionData.probabilitas_keberhasilan || 'N/A'}</p>`;
+                        }
+
+                        resultHtml += `<h4>Justifikasi Lengkap & Saran:</h4>`;
+                        let justifikasi = decisionData.justifikasi_keputusan_lengkap || "Justifikasi tidak tersedia.";
+                        
+                        // Fungsi untuk memformat justifikasi
+                        function formatJustifikasi(text) {
+                            let formattedText = text;
+                            // Ganti \n\n### Heading: dengan <h5>Heading:</h5> (atau h4 jika lebih suka)
+                            formattedText = formattedText.replace(/\n\n### (.*?):\n/g, (match, p1) => `<h5>${p1.trim()}:</h5>`);
+                            
+                            // Ganti poin-poin seperti "\n- Arah Order:" atau "\n            * - Arah Order:"
+                            // Ini perlu regex yang lebih canggih untuk menangani berbagai indentasi dan jenis bullet
+                            // Contoh sederhana untuk format yang lebih umum:
+                            formattedText = formattedText.replace(/\n\s*-\s*(.*?):/g, (match, p1) => `<p><strong>${p1.trim()}:</strong>`); // Untuk baris seperti "- Tipe Order:"
+                            formattedText = formattedText.replace(/\n\s*\*\s*(.*?):/g, (match, p1) => `<p><strong>${p1.trim()}:</strong>`); // Untuk baris seperti "* - Tipe Order:"
+                            
+                            // Untuk baris lanjutan dalam poin yang tidak memiliki ":", contohnya deskripsi Alasan Singkat
+                            // Kita bisa membiarkannya sebagai bagian dari <p> sebelumnya jika AI tidak selalu mengakhirinya dengan :
+                            // atau kita bisa mencoba menggabungkannya jika memungkinkan.
+                            // Untuk saat ini, kita fokus pada heading dan baris utama poin.
+
+                            // Ganti baris baru standar dengan <br>, kecuali yang sudah dihandle heading/list
+                            formattedText = formattedText.split('\n').map(line => {
+                                if (line.trim().startsWith('<h5>') || line.trim().startsWith('<p><strong>')) {
+                                    return line; // Jangan tambahkan <br> jika sudah bagian dari heading atau poin utama
+                                }
+                                return line.trim() === '' ? '' : line + '<br>'; // Tambah <br> untuk baris lain, atau biarkan kosong
+                            }).join('').replace(/<br><h5>/g, '<h5>').replace(/(<br>\s*)+$/,''); // Hapus <br> ekstra di akhir
+
+                            // Jika ada list item yang eksplisit (misal AI menggunakan \n  - Item)
+                            // Ini butuh penanganan lebih lanjut jika formatnya beragam.
+                            // Contoh sederhana jika AI menggunakan "- " untuk list:
+                            // formattedText = '<ul>' + formattedText.replace(/\n-\s*(.+)/g, '<li>$1</li>') + '</ul>';
+                            // Ini mungkin terlalu agresif, tergantung output AI. Untuk sekarang, kita gunakan <p><strong> untuk poin utama.
+
+                            return `<div class="justification-content">${formattedText}</div>`;
+                        }
+
+                        resultHtml += formatJustifikasi(justifikasi);
+
+                        if (decisionData.manajemen_risiko_tambahan && decisionData.manajemen_risiko_tambahan.toLowerCase() !== 'n/a') {
+                            resultHtml += `<h5>Manajemen Risiko Tambahan:</h5><p>${decisionData.manajemen_risiko_tambahan}</p>`;
+                        }
+                        resultHtml += `</div>`; // End recommendation-details
+                    } else {
+                         // Fallback jika decisionData tidak ada, tapi data.analysis mungkin ada (dari error parsing di backend)
+                        let analysisDisplay = data.analysis || 'No analysis available.';
+                        if (data.final_decision_openai_full_object && data.final_decision_openai_full_object.error) {
+                             analysisDisplay = `Error in final decision: ${data.final_decision_openai_full_object.error}\n\nRaw Output:\n${data.final_decision_openai_full_object.decision_text_raw || 'No raw output.'}`;
+                        }
+                        resultHtml += `<pre>${analysisDisplay}</pre>`; // Tampilkan sebagai <pre> jika fallback
+                    }
+                    // --- AKHIR PERUBAHAN UTAMA ---
+
+                    resultHtml += `<h4>Supporting Information:</h4>`;
+                    // ... (bagian supporting information tetap sama) ...
+                    resultHtml += `<p><small>AI-1 Real-time Info: ${data.grok_real_time_info || 'N/A'}</small></p>`;
+                    resultHtml += `<details><summary><small>AI-1 Initial Analysis (Click to expand)</small></summary><pre><small>${data.grok_initial_analysis || 'N/A'}</small></pre></details>`;
+                    resultHtml += `<details><summary><small>AI-2 Initial Analysis (Click to expand)</small></summary><pre><small>${data.deepseek_initial_analysis || 'N/A'}</small></pre></details>`;
+
+                    resultDiv.innerHTML = resultHtml;
+                }
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+                resultDiv.innerHTML = `<p class="error">Error: Failed to fetch analysis. (${error.message}) Check console for details.</p>`;
+            })
+            .finally(() => {
+                analyzeButton.disabled = false; // Re-enable button in both success and error cases
+            });
+        }
+    </script>
+</body>
+</html>

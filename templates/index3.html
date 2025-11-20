@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Recommendation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Crypto Recommendation System</h1>
+
+        <!-- Form untuk memasukkan nama koin dan indikator -->
+        <form action="/analyze" method="POST" onsubmit="showPreloader()">
+            <!-- <div class="mb-3">
+                <label for="coin_name" class="form-label">Nama Koin</label>
+                <input type="text" placeholder="contoh: bitcoin" class="form-control" id="coin_name" name="coin_name"
+                    required>
+            </div> -->
+            <div class="mb-3">
+                <label for="coin_name" class="form-label">Nama Koin</label>
+                <input type="text" placeholder="Ketik nama koin..." class="form-control" id="coin_name" name="coin_name" required oninput="fetchRecommendations(this.value)">
+                <ul id="suggestion-list" class="list-group position-absolute" style="z-index: 1000; display: none;"></ul>
+            </div>
+                
+            <button type="submit" class="btn btn-primary">Analisis Koin</button>
+        </form>
+
+        <!-- Preloader -->
+        <div id="preloader" class="text-center" style="display: none;">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p>Mohon tunggu, analisis sedang diproses...</p>
+        </div>
+
+        <hr>
+
+
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <!-- Bootstrap JS (untuk interaksi seperti dropdown, modal, dll) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Preloader Script -->
+    <script>
+        function showPreloader() {
+            // Menampilkan elemen preloader
+            document.getElementById('preloader').style.display = 'block';
+
+            // Menyembunyikan tombol submit agar pengguna tidak dapat mengklik dua kali
+            const submitButton = document.querySelector('form button[type="submit"]');
+            if (submitButton) {
+                submitButton.disabled = true;
+            }
+        }
+    </script>
+    <script>
+        let coinData = []; // Array untuk menyimpan data koin dari respon.json
+    
+        // Fungsi untuk memuat data koin dari file JSON
+        async function loadCoinData() {
+            try {
+                const response = await fetch("{{ url_for('static', filename='respon.json') }}");
+                const data = await response.json();
+                if (data.success) {
+                    coinData = data.data; // Simpan data koin ke variabel global
+                } else {
+                    console.error("Failed to fetch coin data:", data);
+                }
+            } catch (error) {
+                console.error("Error loading coin data:", error);
+            }
+        }
+    
+        // Panggil fungsi untuk memuat data koin saat halaman dimuat
+        document.addEventListener("DOMContentLoaded", loadCoinData);
+    
+        // Fungsi untuk menampilkan rekomendasi koin berdasarkan input
+        function fetchRecommendations(query) {
+            const suggestionList = document.getElementById("suggestion-list");
+            suggestionList.innerHTML = ""; // Kosongkan daftar sebelumnya
+    
+            if (query.trim() === "") {
+                suggestionList.style.display = "none";
+                return;
+            }
+    
+            // Filter data koin berdasarkan input dan akhiran USDT
+            const filteredCoins = coinData.filter(coin =>
+                coin.baseCoin.toLowerCase().startsWith(query.toLowerCase()) &&
+                coin.symbol.toUpperCase().endsWith("USDT")
+            );
+    
+            if (filteredCoins.length > 0) {
+                suggestionList.style.display = "block"; // Tampilkan daftar rekomendasi
+    
+                filteredCoins.forEach(coin => {
+                    const listItem = document.createElement("li");
+                    listItem.className = "list-group-item list-group-item-action";
+                    listItem.textContent = `${coin.baseCoin} (${coin.symbol})`;
+    
+                    // Pilih koin saat diklik
+                    listItem.addEventListener("click", () => {
+                        document.getElementById("coin_name").value = coin.baseCoin;
+                        suggestionList.style.display = "none";
+                    });
+    
+                    suggestionList.appendChild(listItem);
+                });
+            } else {
+                suggestionList.style.display = "none";
+            }
+        }
+    </script>
+    
+</body>
+
+</html>
