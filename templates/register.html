@@ -161,6 +161,121 @@
             text-decoration: underline;
         }
 
+        /* Modal Pop-up Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            animation: slideUp 0.4s ease;
+            position: relative;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(76, 217, 100, 0.1);
+            border: 2px solid #4cd964;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            animation: scaleIn 0.5s ease 0.2s backwards;
+        }
+
+        .success-icon i {
+            color: #4cd964;
+            font-size: 40px;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #ffffff;
+        }
+
+        .modal-message {
+            font-size: 15px;
+            color: #999;
+            margin-bottom: 32px;
+            line-height: 1.5;
+        }
+
+        .modal-button {
+            width: 100%;
+            padding: 14px;
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-button:hover {
+            background: #e0e0e0;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
         @media (max-width: 480px) {
             .register-container {
                 padding: 30px 24px;
@@ -168,6 +283,10 @@
 
             h2 {
                 font-size: 24px;
+            }
+
+            .modal-content {
+                padding: 32px 24px;
             }
         }
     </style>
@@ -177,7 +296,7 @@
     <div class="register-container">
         <h2>Register</h2>
         <p class="subtitle">Buat akun baru</p>
-        <form method="post">
+        <form method="post" id="registerForm">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" placeholder="Masukkan username" required>
@@ -202,6 +321,20 @@
         </p>
     </div>
 
+    <!-- Modal Pop-up -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal-content">
+            <div class="success-icon">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h3 class="modal-title">Registrasi Berhasil!</h3>
+            <p class="modal-message">
+                Akun Anda telah berhasil dibuat. Silakan login untuk melanjutkan.
+            </p>
+            <button class="modal-button" onclick="redirectToLogin()">Login Sekarang</button>
+        </div>
+    </div>
+
     <script>
         function togglePassword() {
             const InputPassword = document.getElementById('password')
@@ -215,11 +348,32 @@
                 InputPassword.type = 'text';
                 ShowPassword.classList.remove('fa-eye');
                 ShowPassword.classList.add('fa-eye-slash');
-
             }
-
-
         }
+
+        function showSuccessModal() {
+            document.getElementById('successModal').classList.add('show');
+        }
+
+        function redirectToLogin() {
+            // Redirect ke halaman login
+            window.location.href = '/login';
+        }
+
+        // Close modal ketika klik di luar modal content
+        document.getElementById('successModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                redirectToLogin();
+            }
+        });
+
+        // Check URL parameter untuk menampilkan modal jika registrasi berhasil
+        window.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('success') === 'true') {
+                showSuccessModal();
+            }
+        });
     </script>
 
 </body>

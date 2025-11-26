@@ -25,6 +25,7 @@ def save_to_db(output, recommendation, trade_levels):
 
     sql = """
         INSERT INTO analyses (
+            user_id,
             coin_name,
             entry_price,
             market_structure_1h,
@@ -40,11 +41,13 @@ def save_to_db(output, recommendation, trade_levels):
             tp1,
             rrr,
             position_size_units,
-            ob_type
-        ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+            ob_type,
+            status_entry
+        ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
     """
 
     values = (
+        session["user_id"],
         output["coin_name"],
         output["entry_price"],
         output["market_structure"]["1h"],
@@ -61,6 +64,7 @@ def save_to_db(output, recommendation, trade_levels):
         trade_levels["rrr"]if trade_levels else None,
         trade_levels["position_size_units"]if trade_levels else None,
         trade_levels["ob_type"]if trade_levels else None,
+        "no_entry",
     )
 
     cursor.execute(sql, values)
@@ -462,7 +466,7 @@ def login_required(f):
     def decorated(*args, **kwargs):
        if 'user_id' not in session:
            return redirect(url_for('login'))
-       return f(*args, *kwargs)
+       return f(*args, **kwargs)
     return decorated 
 
 
@@ -488,7 +492,8 @@ def register ():
         finally:
             cur.close()
             conn.close()
-        return redirect(url_for('login'))
+ 
+        return redirect(url_for('register', success='true'))
     return render_template('register.html')
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -499,7 +504,8 @@ def login():
         conn = get_conn()
 
         if not conn:
-            return render_template("login.html", error="cannot connect DB!")
+            return redirect(url_for('login', error='true', message='Tidak dapat terhubung ke database!'))
+        
         cur = conn.cursor(dictionary=True)
         cur.execute("SELECT * FROM users WHERE username = %s", (username,))
         user = cur.fetchone()
@@ -508,8 +514,10 @@ def login():
         if user and check_password_hash(user['password'], password):
             session['user_id'] = user['id']
             session['username'] = user['username']
-            return redirect(url_for('index'))
-        return render_template('login.html', error="Invalid Username and Password!")
+            return redirect(url_for('login', success='true'))
+        
+        return redirect(url_for('login', error='true', message='Username atau password salah!'))
+    
     return render_template('login.html')
 
 @app.route('/logout')
@@ -548,10 +556,51 @@ def analyze_single_coin():
 
     return jsonify(output_data)
 
+# Profile
+@app.route('/profile')
+@login_required
+
+def profile():
+
+    conn = get_conn()
+    cursor = conn.cursor(dictionary=True)
+
+    cursor.execute("SELECT id, username, created_at FROM users WHERE id = %s", (session['user_id'],))
+    user = cursor.fetchone()
+
+    cursor.close()
+    conn.close()
+
+    return render_template("profile.html", user=user)
+
+
+# delete profile
+@app.route('/delete_profile', methods=["POST"])
+@login_required
+def delete_profile():
+    user_id = session["user_id"]
+
+    conn = get_conn()
+    cursor = conn.cursor()
+
+    # delete history
+    cursor.execute("DELETE from analyses WHERE user_id = %s", (user_id,))
+
+     # delete profile
+    cursor.execute("DELETE from users WHERE id = %s", (user_id,))
+
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+
+    session.clear()
+
+    return redirect(url_for("login"))
+
 
 # function History 
-
-@app.route("/history", methods=["GET"])
+@app.route('/history', methods=["GET"])
 @login_required
 def get_history():
     try:    
@@ -568,11 +617,13 @@ def get_history():
                 entry,
                 sl,
                 tp1,
-                rrr
+                rrr,
+                status_entry
             FROM analyses
+            WHERE user_id = %s
             ORDER BY created_at DESC 
             LIMIT 5
-        """)
+        """,(session['user_id'],))
 
         rows = cursor.fetchall()
 
@@ -616,8 +667,8 @@ def get_history_detail(record_id):
             ob_type,
             created_at
         FROM analyses
-        WHERE id = %s
-    """, (record_id,))
+        WHERE id = %s AND user_id = %s 
+    """, (record_id, session['user_id']))
 
     row = cursor.fetchone()  
     cursor.close()
@@ -627,6 +678,31 @@ def get_history_detail(record_id):
         return jsonify({"error": "Record not found"}), 404
 
     return jsonify(row), 200
+
+
+@app.route("/update_status/<int:record_id>", methods=["POST"])
+@login_required
+def update_status(record_id):
+    new_status = request.form.get("status")
+
+    if new_status not in ["no_entry", "TP", "SL"]:
+        return jsonify({"error": "Invalid status"}), 400
+
+    conn = get_conn()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        UPDATE analyses 
+        SET status_entry = %s 
+        WHERE id = %s AND user_id = %s
+    """, (new_status, record_id, session['user_id']))
+
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+    return jsonify({"success": True})
+
 
 
 if __name__ == '__main__':

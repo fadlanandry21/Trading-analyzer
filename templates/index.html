@@ -126,6 +126,50 @@
             font-weight: 700;
         }
 
+        a {
+            color: #00BFFF;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .status-select {
+            appearance: none;
+            background-color: #2A2A2A;
+            color: #E0E0E0;
+            border: 1px solid #3A3A3A;
+            border-radius: 8px;
+            padding: 8px 35px 8px 12px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            outline: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23999' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            min-width: 120px;
+        }
+
+        .status-select:hover {
+            background-color: #333;
+            border-color: #4CAF50;
+        }
+
+        .status-select.no-entry {
+            border-left: 3px solid #999;
+        }
+
+        .status-select.tp {
+            border-left: 3px solid #4CAF50;
+            color: #4CAF50;
+        }
+
+        .status-select.sl {
+            border-left: 3px solid #FF5555;
+            color: #FF5555;
+        }
+
+
         /* Logout Modal Styles */
         .modal-overlay {
             display: none;
@@ -280,7 +324,6 @@
         }
 
 
-
         /* ================================================= */
         /* RESULT AREA */
         /* ================================================= */
@@ -344,6 +387,68 @@
             text-align: center;
         }
 
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9em;
+            background-color: #1E1E1E;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+            margin-top: 15px;
+        }
+
+        table thead tr {
+            background-color: #222;
+            color: #4CAF50;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        table th {
+            padding: 15px 12px;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #3A3A3A;
+        }
+
+        table td {
+            padding: 15px 12px;
+            border-bottom: 1px solid #282828;
+            vertical-align: middle;
+        }
+
+        table tbody tr {
+            transition: all 0.3s ease;
+        }
+
+        table tbody tr:hover {
+            background-color: #252525;
+        }
+
+        table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Responsive table untuk mobile */
+        @media (max-width: 768px) {
+            table {
+                font-size: 0.8em;
+            }
+
+            table th,
+            table td {
+                padding: 10px 8px;
+            }
+
+            .status-select {
+                min-width: 100px;
+                font-size: 12px;
+                padding: 6px 30px 6px 10px;
+            }
+        }
+
         /* ================================================= */
         /* MEDIA QUERIES (Optimalisasi Khusus Mobile) */
         /* ================================================= */
@@ -381,7 +486,7 @@
             <div class="form-group">
                 <label for="coin_name">Coin Symbol (e.g., BTC, ETH, DOGE):</label>
                 <input type="text" id="coin_name" name="coin_name" placeholder="BTC" required>
-                <button onclick="analyze()">Analyze</button>
+                <button class="btn-onclick" onclick="analyze()">Analyze</button>
             </div>
             <div id="result"></div>
             <button id="historyBtn"
@@ -392,7 +497,7 @@
     </div>
 
     <div class="container-profile">
-        <button id="btn-profile" onclick="logout()"><i class="fa-solid fa-user" onclick=""></i></button>
+        <a href="/profile" id="btn-profile"><i class="fa-solid fa-user"></i></a>
     </div>
 
     <!-- Logout Modal -->
@@ -471,7 +576,7 @@
                     let historyHtml = '<h3>5 Analisa terakhir</h3>';
 
                     historyHtml += '<table style="width:100%; border-collapse:collapse; font-size:0.9em;">';
-                    historyHtml += '<tr style="background:#222;"><th>Coin</th><th>Price</th><th>Rec.</th><th>Time</th><th>Status</th><th>Detail</th></tr>';
+                    historyHtml += '<tr style="background:#222;"><th>Coin</th><th>Price</th><th>Rec.</th><th>Time</th><th>Status</th><th>Detail</th><th>status Entry</th></tr>';
 
 
                     data.forEach(row => {
@@ -486,7 +591,15 @@
         ${row.has_trade_levels ? 'Success' : 'Failed'}
     </span>
                         <td>
-                            <button onclick="viewDetails(${row.id})">Lihat Detail</button>
+                            <a onclick="viewDetails(${row.id})">Lihat Detail</a>
+                        </td>
+                        <td>
+                            <select class="status-select ${row.status_entry === 'no_entry' ? 'no-entry' : row.status_entry === 'TP' ? 'tp' : 'sl'}" 
+                                        onchange="updateStatus(${row.id}, this.value, this)">
+                                <option value="no_entry" ${row.status_entry === 'no_entry' ? 'selected' : ''}>No Entry</option>
+                                <option value="TP" ${row.status_entry === 'TP' ? 'selected' : ''}>TP (Take Profit)</option>
+                                <option value="SL" ${row.status_entry === 'SL' ? 'selected' : ''}>SL (Stop Loss)</option>
+                            </select>
                         </td>
                     </tr>
                 `;
@@ -542,6 +655,36 @@ Position Size Units: ${data.position_size_units}
                 })
                 .catch(err => alert("Error: " + err));
         }
+
+        function updateStatus(id, value, element) {
+            let formData = new FormData();
+            formData.append("status", value);
+
+            // Update warna dropdown secara realtime
+            element.classList.remove("no-entry", "tp", "sl");
+
+            if (value === "no_entry") {
+                element.classList.add("no-entry");
+            } else if (value === "TP") {
+                element.classList.add("tp");
+            } else if (value === "SL") {
+                element.classList.add("sl");
+            }
+
+            fetch(`/update_status/${id}`, {
+                method: "POST",
+                body: formData
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (!data.success) {
+                        alert("Gagal mengupdate status!");
+                    }
+                })
+                .catch(err => alert("Error: " + err));
+        }
+
+
 
         function analyze() {
             const coinName = document.getElementById('coin_name').value.trim().toUpperCase();

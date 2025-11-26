@@ -1,183 +1,434 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8">
-    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Hybrid SMC Analyzer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-</head>
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-        background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-        color: #ffffff;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-    }
+        body {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
 
-    .login-container {
-        background: #1a1a1a;
-        border: 1px solid #333;
-        border-radius: 12px;
-        padding: 40px;
-        width: 100%;
-        max-width: 400px;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-    }
-
-    h2 {
-        font-size: 28px;
-        font-weight: 600;
-        margin-bottom: 8px;
-        text-align: center;
-    }
-
-    .subtitle {
-        text-align: center;
-        color: #999;
-        margin-bottom: 32px;
-        font-size: 14px;
-    }
-
-    .form-group {
-        margin-bottom: 24px;
-    }
-
-    label {
-        display: block;
-        margin-bottom: 8px;
-        font-size: 14px;
-        font-weight: 500;
-        color: #e0e0e0;
-    }
-
-    .input-wrapper {
-        position: relative;
-    }
-
-    input {
-        width: 100%;
-        padding: 12px 16px;
-        background: #0a0a0a;
-        border: 1px solid #333;
-        border-radius: 8px;
-        color: #ffffff;
-        font-size: 15px;
-        transition: all 0.3s ease;
-    }
-
-    input:focus {
-        outline: none;
-        border-color: #ffffff;
-        background: #000000;
-    }
-
-    input::placeholder {
-        color: #666;
-    }
-
-    .password-toggle {
-        position: absolute;
-        right: 12px;
-        top: 50%;
-        transform: translateY(-50%);
-        background: none;
-        border: none;
-        color: #999;
-        cursor: pointer;
-        padding: 4px 8px;
-        font-size: 13px;
-        transition: color 0.3s ease;
-    }
-
-    .password-toggle:hover {
-        color: #ffffff;
-    }
-
-    .password-input {
-        padding-right: 60px;
-    }
-
-    button[type="submit"] {
-        width: 100%;
-        padding: 14px;
-        background: #ffffff;
-        color: #000000;
-        border: none;
-        border-radius: 8px;
-        font-size: 16px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        margin-top: 8px;
-    }
-
-    button[type="submit"]:hover {
-        background: #e0e0e0;
-        transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
-    }
-
-    button[type="submit"]:active {
-        transform: translateY(0);
-    }
-
-    .error {
-        background: rgba(255, 68, 68, 0.1);
-        border: 1px solid rgba(255, 68, 68, 0.3);
-        color: #ff6b6b;
-        padding: 12px 16px;
-        border-radius: 8px;
-        margin-bottom: 20px;
-        font-size: 14px;
-        text-align: center;
-    }
-
-    .register-link {
-        text-align: center;
-        margin-top: 24px;
-        font-size: 14px;
-        color: #999;
-    }
-
-    .register-link a {
-        color: #ffffff;
-        text-decoration: none;
-        font-weight: 500;
-        transition: opacity 0.3s ease;
-    }
-
-    .register-link a:hover {
-        opacity: 0.8;
-        text-decoration: underline;
-    }
-
-    @media (max-width: 480px) {
         .login-container {
-            padding: 30px 24px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
 
         h2 {
-            font-size: 24px;
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-align: center;
+            color: #4CAF50;
         }
-    }
-</style>
+
+        .subtitle {
+            text-align: center;
+            color: #999;
+            margin-bottom: 32px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #e0e0e0;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 16px;
+            background: #0a0a0a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #4CAF50;
+            background: #000000;
+        }
+
+        input::placeholder {
+            color: #666;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            padding: 4px 8px;
+            font-size: 13px;
+            transition: color 0.3s ease;
+        }
+
+        .password-toggle:hover {
+            color: #ffffff;
+        }
+
+        .password-input {
+            padding-right: 60px;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 14px;
+            background: #4CAF50;
+            color: #1A1A1A;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+        }
+
+        button[type="submit"]:hover {
+            background: #45a049;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+        }
+
+        button[type="submit"]:active {
+            transform: translateY(0);
+        }
+
+        .error-message {
+            background: rgba(255, 68, 68, 0.1);
+            border: 1px solid rgba(255, 68, 68, 0.3);
+            color: #ff6b6b;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 14px;
+            color: #999;
+        }
+
+        .register-link a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+        }
+
+        .register-link a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        /* Modal Overlay */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Success Modal */
+        .success-modal {
+            background: linear-gradient(135deg, #1E1E1E 0%, #2A2A2A 100%);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            border: 2px solid #4CAF50;
+            animation: slideUp 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .success-modal::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(76, 175, 80, 0.1) 0%, transparent 70%);
+            animation: rotate 10s linear infinite;
+        }
+
+        .success-modal-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: checkmark 0.6s ease;
+        }
+
+        .success-icon i {
+            font-size: 40px;
+            color: #1A1A1A;
+        }
+
+        .success-modal h3 {
+            color: #4CAF50;
+            font-size: 28px;
+            margin-bottom: 15px;
+            border: none;
+            padding: 0;
+        }
+
+        .success-modal p {
+            color: #B0B0B0;
+            font-size: 16px;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .success-redirect {
+            color: #00BFFF;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        /* Error Modal */
+        .error-modal {
+            background: linear-gradient(135deg, #1E1E1E 0%, #2A2A2A 100%);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            border: 2px solid #FF5555;
+            animation: slideUp 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .error-modal::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 85, 85, 0.1) 0%, transparent 70%);
+            animation: rotate 10s linear infinite;
+        }
+
+        .error-modal-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .error-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #FF5555 0%, #cc4444 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: shake 0.6s ease;
+        }
+
+        .error-icon i {
+            font-size: 40px;
+            color: #1A1A1A;
+        }
+
+        .error-modal h3 {
+            color: #FF5555;
+            font-size: 28px;
+            margin-bottom: 15px;
+            border: none;
+            padding: 0;
+        }
+
+        .error-modal p {
+            color: #B0B0B0;
+            font-size: 16px;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .error-modal button {
+            width: 100%;
+            padding: 14px;
+            background: #FF5555;
+            color: #1A1A1A;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .error-modal button:hover {
+            background: #cc4444;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(255, 85, 85, 0.3);
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(0, 191, 255, 0.3);
+            border-top-color: #00BFFF;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes checkmark {
+            0% {
+                transform: scale(0) rotate(-45deg);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.2) rotate(10deg);
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes shake {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            10%, 30%, 50%, 70%, 90% {
+                transform: translateX(-10px);
+            }
+            20%, 40%, 60%, 80% {
+                transform: translateX(10px);
+            }
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 30px 24px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            .success-modal,
+            .error-modal {
+                padding: 32px 24px;
+            }
+        }
+    </style>
+</head>
 
 <body>
     <div class="login-container">
         <h2>Login</h2>
-        <p class="subtitle">Masuk ke akun Anda</p>
-
-        <form method="post">
+        <p class="subtitle">Selamat datang kembali</p>
+        
+        <form method="post" id="loginForm">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" placeholder="Masukkan username" required>
@@ -198,13 +449,44 @@
         </form>
 
         <p class="register-link">
-            Belum punya akun? <a href="/register">Daftar sekarang</a>
+            Belum punya akun? <a href="/register">Register di sini</a>
         </p>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="successModal">
+        <div class="success-modal">
+            <div class="success-modal-content">
+                <div class="success-icon">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h3>Login Berhasil!</h3>
+                <p>Selamat datang di Hybrid SMC Analyzer</p>
+                <div class="success-redirect">
+                    <span>Mengalihkan ke dashboard</span>
+                    <div class="spinner"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div class="modal-overlay" id="errorModal">
+        <div class="error-modal">
+            <div class="error-modal-content">
+                <div class="error-icon">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+                <h3>Login Gagal!</h3>
+                <p id="errorMessage">Username atau password salah. Silakan coba lagi.</p>
+                <button onclick="closeErrorModal()">Coba Lagi</button>
+            </div>
+        </div>
     </div>
 
     <script>
         function togglePassword() {
-            const InputPassword = document.getElementById('password')
+            const InputPassword = document.getElementById('password');
             const ShowPassword = document.getElementById('toggle-text').querySelector('i');
 
             if (InputPassword.type === 'text') {
@@ -215,12 +497,43 @@
                 InputPassword.type = 'text';
                 ShowPassword.classList.remove('fa-eye');
                 ShowPassword.classList.add('fa-eye-slash');
-
             }
-
-
         }
+
+        function closeErrorModal() {
+            document.getElementById('errorModal').classList.remove('show');
+        }
+
+        // Check URL parameter untuk menampilkan modal
+        window.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            // Tampilkan success modal jika login berhasil
+            if (urlParams.get('success') === 'true') {
+                document.getElementById('successModal').classList.add('show');
+                
+                // Redirect ke dashboard setelah 2 detik
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 2000);
+            }
+            
+            // Tampilkan error modal jika login gagal
+            if (urlParams.get('error') === 'true') {
+                const errorMsg = urlParams.get('message') || 'Username atau password salah. Silakan coba lagi.';
+                document.getElementById('errorMessage').textContent = errorMsg;
+                document.getElementById('errorModal').classList.add('show');
+            }
+        });
+
+        // Close error modal ketika klik di luar modal content
+        document.getElementById('errorModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeErrorModal();
+            }
+        });
     </script>
+
 </body>
 
 </html>
