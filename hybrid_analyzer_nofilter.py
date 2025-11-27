@@ -12,6 +12,8 @@ from db import get_conn
 from flask import Flask, request, jsonify, render_template, redirect, url_for, session
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
+from datetime import datetime, timedelta
+
 
 
 
@@ -464,10 +466,11 @@ def get_all_market_data(symbol: str) -> Optional[Dict[str, Any]]:
 def login_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
-       if 'user_id' not in session:
-           return redirect(url_for('login'))
-       return f(*args, **kwargs)
-    return decorated 
+        if "user_id" not in session:
+            return redirect(url_for("login"))
+
+        return f(*args, **kwargs)
+    return decorated
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -534,12 +537,50 @@ def index():
 @app.route('/analyze', methods=['POST'])
 @login_required
 def analyze_single_coin():
+
     """Endpoint untuk menganalisis satu koin (sesuai permintaan frontend)"""
     start_time = time.time()
     
     coin_symbol = request.form.get('coin_name', '').upper().strip()
     if not coin_symbol:
         return jsonify({"error": "Coin symbol is required"}), 400
+    
+    user_id = session["user_id"]
+
+    # Cooldown Search
+    conn = get_conn()
+    cursor = conn.cursor(dictionary=True)
+
+    cursor.execute("""
+        SELECT created_at 
+        FROM analyses
+        WHERE user_id = %s AND coin_name = %s
+        ORDER BY created_at DESC
+        LIMIT 1
+    """, (session["user_id"], coin_symbol))
+
+    last_record = cursor.fetchone()
+
+    if last_record:
+
+        last_time = last_record["created_at"]
+        Allowed_time = last_time + timedelta(minutes=5)
+        now = datetime.now()
+
+        if now < Allowed_time:
+            cursor.close()
+            conn.close()
+
+            return jsonify({
+                "cooldown" : True,
+                "coin" : coin_symbol,
+                "until" : Allowed_time.isoformat()
+            })
+    
+    cursor.close()
+    conn.close()
+
+        # end cooldown
 
     logger.info(f"Analyzing {coin_symbol}...")
     

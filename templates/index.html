@@ -684,6 +684,62 @@ Position Size Units: ${data.position_size_units}
                 .catch(err => alert("Error: " + err));
         }
 
+function showCooldownPopup(coin, untilISO) {
+
+    const untilTime = new Date(untilISO); 
+    const now = new Date();
+    let remaining = Math.floor((untilTime - now) / 1000);
+
+    const popup = document.createElement("div");
+    popup.id = "cooldown-popup";
+    popup.style = `
+        position: fixed; top:0; left:0; width:100%; height:100%;
+        background: rgba(0,0,0,0.7);
+        display:flex; justify-content:center; align-items:center;
+        z-index:9999;
+    `;
+
+    popup.innerHTML = `
+        <div style="
+            background:#1E1E1E; padding:25px; border-radius:10px;
+            width:90%; max-width:350px; text-align:center; color:#E0E0E0;
+            border:2px solid #4CAF50;
+        ">
+            <h2 style="color:#4CAF50;">sabar kang, sek cooldown</h2>
+            <p>Anda baru saja menganalisa <b>${coin}</b>.</p>
+            <p id="cd-text" style="font-size:18px; margin:15px 0; color:#00BFFF;">
+                Sisa Waktu: ...
+            </p>
+            <button onclick="document.getElementById('cooldown-popup').remove()"
+                style="
+                    background:#4CAF50; border:none; padding:10px 20px;
+                    border-radius:6px; color:black; font-weight:700;
+                ">
+                OK
+            </button>
+        </div>
+    `;
+    
+    document.body.appendChild(popup);
+
+    const cdText = document.getElementById("cd-text");
+
+    // Hitung countdown
+    const timer = setInterval(() => {
+        remaining--;
+
+        if (remaining <= 0) {
+            cdText.innerText = "Anda bisa menganalisa lagi!";
+            clearInterval(timer);
+            return;
+        }
+
+        const m = Math.floor(remaining / 60);
+        const s = remaining % 60;
+
+        cdText.innerText = `Sisa waktu: ${m} menit ${s} detik`;
+    }, 1000);
+}
 
 
         function analyze() {
@@ -707,7 +763,7 @@ Position Size Units: ${data.position_size_units}
 
             fetch('/analyze', {
                 method: 'POST',
-                body: formData
+                body: formData,
             })
                 .then(response => {
                     if (!response.ok) {
@@ -717,7 +773,16 @@ Position Size Units: ${data.position_size_units}
                     }
                     return response.json();
                 })
+
+
                 .then(data => {
+
+                    if (data.cooldown) {
+                        showCooldownPopup(data.coin, data.until);
+                        return;
+                    }
+
+
                     let resultHtml = `<h2>Analysis for ${data.coin_name}USDT</h2>`;
 
                     // DATA UTAMA
@@ -771,10 +836,14 @@ Position Size Units: ${data.position_size_units}
                     }
 
                     resultDiv.innerHTML = resultHtml;
+
+
                 })
                 .catch(error => {
                     resultDiv.innerHTML = `<span class="error">Error: ${error.message}</span>`;
                 });
+
+
         }
     </script>
 </body>
