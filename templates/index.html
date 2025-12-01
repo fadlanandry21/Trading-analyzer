@@ -323,6 +323,91 @@
             }
         }
 
+        .input-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        #suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: #1E1E1E;
+            border: 1px solid #333;
+            border-radius: 6px;
+            max-height: 200px;
+            overflow-y: auto;
+            display: none;
+            z-index: 9999;
+        }
+
+                #suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            width: 100%;
+            background: #1E1E1E;
+            border: 1px solid #3A3A3A;
+            border-radius: 6px;
+            max-height: 250px;
+            overflow-y: auto;
+            display: none;
+            z-index: 9999;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            margin-top: 5px;
+        }
+
+        #suggestions::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #suggestions::-webkit-scrollbar-track {
+            background: #2A2A2A;
+            border-radius: 4px;
+        }
+
+        #suggestions::-webkit-scrollbar-thumb {
+            background: #4CAF50;
+            border-radius: 4px;
+        }
+
+        #suggestions::-webkit-scrollbar-thumb:hover {
+            background: #45a049;
+        }
+
+        .suggestion-item {
+            padding: 12px 15px;
+            cursor: pointer;
+            border-bottom: 1px solid #282828;
+            transition: all 0.2s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .suggestion-item:last-child {
+            border-bottom: none;
+        }
+
+        .suggestion-item:hover {
+            background-color: #2A2A2A;
+            border-left: 3px solid #4CAF50;
+        }
+
+        .suggestion-coin {
+            font-weight: 700;
+            color: #4CAF50;
+            font-size: 14px;
+        }
+
+        .suggestion-pair {
+            color: #888;
+            font-size: 12px;
+        }
+
 
         /* ================================================= */
         /* RESULT AREA */
@@ -484,9 +569,12 @@
             <h1>Hybrid SMC Futures Analyzer</h1>
 
             <div class="form-group">
-                <label for="coin_name">Coin Symbol (e.g., BTC, ETH, DOGE):</label>
-                <input type="text" id="coin_name" name="coin_name" placeholder="BTC" required>
-                <button class="btn-onclick" onclick="analyze()">Analyze</button>
+                <div class="input-wrapper">
+                    <label for="coin_name">Coin Symbol (e.g., BTC, ETH, DOGE):</label>
+                    <input type="text" id="coin_name" name="coin_name" placeholder="BTC" required>
+                    <div id="suggestions"></div>
+                    <button class="btn-onclick" onclick="analyze()">Analyze</button>
+                </div>
             </div>
             <div id="result"></div>
             <button id="historyBtn"
@@ -684,62 +772,136 @@ Position Size Units: ${data.position_size_units}
                 .catch(err => alert("Error: " + err));
         }
 
-function showCooldownPopup(coin, untilISO) {
+        // show Cooldown
+        function showCooldownPopup(coin, untilISO) {
 
-    const untilTime = new Date(untilISO); 
-    const now = new Date();
-    let remaining = Math.floor((untilTime - now) / 1000);
+            const untilTime = new Date(untilISO);
+            const now = new Date();
+            let remaining = Math.floor((untilTime - now) / 1000);
 
-    const popup = document.createElement("div");
-    popup.id = "cooldown-popup";
-    popup.style = `
-        position: fixed; top:0; left:0; width:100%; height:100%;
-        background: rgba(0,0,0,0.7);
-        display:flex; justify-content:center; align-items:center;
-        z-index:9999;
-    `;
+            const popup = document.createElement("div");
+            popup.id = "cooldown-popup";
+            popup.style = `
+                position: fixed; top:0; left:0; width:100%; height:100%;
+                background: rgba(0,0,0,0.7);
+                display:flex; justify-content:center; align-items:center;
+                z-index:9999;
+            `;
 
-    popup.innerHTML = `
-        <div style="
-            background:#1E1E1E; padding:25px; border-radius:10px;
-            width:90%; max-width:350px; text-align:center; color:#E0E0E0;
-            border:2px solid #4CAF50;
-        ">
-            <h2 style="color:#4CAF50;">sabar kang, sek cooldown</h2>
-            <p>Anda baru saja menganalisa <b>${coin}</b>.</p>
-            <p id="cd-text" style="font-size:18px; margin:15px 0; color:#00BFFF;">
-                Sisa Waktu: ...
-            </p>
-            <button onclick="document.getElementById('cooldown-popup').remove()"
-                style="
-                    background:#4CAF50; border:none; padding:10px 20px;
-                    border-radius:6px; color:black; font-weight:700;
+            popup.innerHTML = `
+                <div style="
+                    background:#1E1E1E; padding:25px; border-radius:10px;
+                    width:90%; max-width:350px; text-align:center; color:#E0E0E0;
+                    border:2px solid #4CAF50;
                 ">
-                OK
-            </button>
-        </div>
-    `;
-    
-    document.body.appendChild(popup);
+                    <h2 style="color:#4CAF50;">Oops! Tunggu 5 menit untuk analisa coin yang sama.</h2>
+                    <p>Anda baru saja menganalisa <b>${coin}</b>.</p>
+                    <p id="cd-text" style="font-size:18px; margin:15px 0; color:#00BFFF;">
+                Sisa Waktu: ...
+                    </p>
+                    <button onclick="document.getElementById('cooldown-popup').remove()"
+                        style="
+                            background:#4CAF50; border:none; padding:10px 20px;
+                            border-radius:6px; color:black; font-weight:700;
+                        ">
+                        OK
+                    </button>
+                </div>
+            `;
 
-    const cdText = document.getElementById("cd-text");
+            document.body.appendChild(popup);
 
-    // Hitung countdown
-    const timer = setInterval(() => {
-        remaining--;
+            const cdText = document.getElementById("cd-text");
 
-        if (remaining <= 0) {
-            cdText.innerText = "Anda bisa menganalisa lagi!";
-            clearInterval(timer);
-            return;
+            // Hitung countdown
+            const timer = setInterval(() => {
+                remaining--;
+
+                if (remaining <= 0) {
+                    cdText.innerText = "Anda bisa menganalisa lagi!";
+                    clearInterval(timer);
+                    return;
+                }
+
+                const m = Math.floor(remaining / 60);
+                const s = remaining % 60;
+
+                cdText.innerText = `Sisa waktu: ${m} menit ${s} detik`;
+            }, 1000);
         }
 
-        const m = Math.floor(remaining / 60);
-        const s = remaining % 60;
+        // function Suggestion
 
-        cdText.innerText = `Sisa waktu: ${m} menit ${s} detik`;
-    }, 1000);
-}
+        // Data coin list
+        let coinList = [];
+
+        // Load coin data
+        fetch("/static/data-coin.json")
+        .then( res => res.json())
+        .then( json => {
+            coinList = json.data.map(item => ({
+                coin: item.baseCoin,
+                pair: item.symbol
+            }));
+            console.log("coin list laoded:", coinList.length, "coins");
+        })
+
+        const input = document.getElementById("coin_name");
+        const suggestBox = document.getElementById("suggestions");
+
+        // Input event listener untuk menampilkan suggestions
+        input.addEventListener("input", function () {
+            const text = this.value.trim().toUpperCase();
+
+            if (text.length === 0) {
+                suggestBox.style.display = "none";
+                return;
+            }
+
+            // Filter coins yang cocok dengan input
+            const results = coinList
+                .filter(c => c.coin && c.coin.toUpperCase().startsWith(text))
+                .slice(0, 10);
+
+            if (results.length === 0) {
+                suggestBox.style.display = "none";
+                return;
+            }
+
+            // Tampilkan suggestions
+            suggestBox.innerHTML = results.map(item => `
+                <div class="suggestion-item" onclick="selectCoin('${item.coin}')">
+                    <span class="suggestion-coin">${item.coin}</span>
+                    <span class="suggestion-pair">${item.pair}</span>
+                </div>
+            `).join("");
+
+            suggestBox.style.display = "block";
+        });
+
+        // Function untuk memilih coin dari suggestion
+        function selectCoin(symbol) {
+            input.value = symbol;
+            suggestBox.style.display = "none";
+            input.focus();
+        }
+
+        // Hide suggestions ketika klik di luar
+        document.addEventListener("click", function(e) {
+            if (!input.contains(e.target) && !suggestBox.contains(e.target)) {
+                suggestBox.style.display = "none";
+            }
+        });
+
+        // Prevent form submission on Enter
+        input.addEventListener("keydown", function(e) {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                suggestBox.style.display = "none";
+                analyze();
+            }
+        });
+
 
 
         function analyze() {

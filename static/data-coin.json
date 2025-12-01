@@ -1,0 +1,2877 @@
+{
+    "success": true,
+    "code": "1",
+    "data":
+    [
+        {
+          "symbol": "BTCUSDT",
+          "price": "88319.93000000",
+          "baseCoin": "BTC"
+        },
+        {
+          "symbol": "ETHUSDT",
+          "price": "1584.81000000",
+          "baseCoin": "ETH"
+        },
+        {
+          "symbol": "BNBUSDT",
+          "price": "600.09000000",
+          "baseCoin": "BNB"
+        },
+        {
+          "symbol": "BCCUSDT",
+          "price": "0.00000000",
+          "baseCoin": "BCC"
+        },
+        {
+          "symbol": "NEOUSDT",
+          "price": "5.48000000",
+          "baseCoin": "NEO"
+        },
+        {
+          "symbol": "LTCUSDT",
+          "price": "78.88000000",
+          "baseCoin": "LTC"
+        },
+        {
+          "symbol": "QTUMUSDT",
+          "price": "2.11900000",
+          "baseCoin": "QTUM"
+        },
+        {
+          "symbol": "ADAUSDT",
+          "price": "0.62490000",
+          "baseCoin": "ADA"
+        },
+        {
+          "symbol": "XRPUSDT",
+          "price": "2.08590000",
+          "baseCoin": "XRP"
+        },
+        {
+          "symbol": "EOSUSDT",
+          "price": "0.63640000",
+          "baseCoin": "EOS"
+        },
+        {
+          "symbol": "TUSDUSDT",
+          "price": "0.99820000",
+          "baseCoin": "TUSD"
+        },
+        {
+          "symbol": "IOTAUSDT",
+          "price": "0.16950000",
+          "baseCoin": "IOTA"
+        },
+        {
+          "symbol": "XLMUSDT",
+          "price": "0.24790000",
+          "baseCoin": "XLM"
+        },
+        {
+          "symbol": "ONTUSDT",
+          "price": "0.14510000",
+          "baseCoin": "ONT"
+        },
+        {
+          "symbol": "TRXUSDT",
+          "price": "0.24660000",
+          "baseCoin": "TRX"
+        },
+        {
+          "symbol": "ETCUSDT",
+          "price": "15.49000000",
+          "baseCoin": "ETC"
+        },
+        {
+          "symbol": "ICXUSDT",
+          "price": "0.10010000",
+          "baseCoin": "ICX"
+        },
+        {
+          "symbol": "VENUSDT",
+          "price": "0.00000000",
+          "baseCoin": "VEN"
+        },
+        {
+          "symbol": "NULSUSDT",
+          "price": "0.02580000",
+          "baseCoin": "NULS"
+        },
+        {
+          "symbol": "VETUSDT",
+          "price": "0.02342000",
+          "baseCoin": "VET"
+        },
+        {
+          "symbol": "PAXUSDT",
+          "price": "0.00000000",
+          "baseCoin": "PAX"
+        },
+        {
+          "symbol": "BCHABCUSDT",
+          "price": "0.00000000",
+          "baseCoin": "BCHABC"
+        },
+        {
+          "symbol": "BCHSVUSDT",
+          "price": "0.00000000",
+          "baseCoin": "BCHSV"
+        },
+        {
+          "symbol": "USDCUSDT",
+          "price": "0.99990000",
+          "baseCoin": "USDC"
+        },
+        {
+          "symbol": "LINKUSDT",
+          "price": "13.11000000",
+          "baseCoin": "LINK"
+        },
+        {
+          "symbol": "WAVESUSDT",
+          "price": "1.07600000",
+          "baseCoin": "WAVES"
+        },
+        {
+          "symbol": "BTTUSDT",
+          "price": "0.00000000",
+          "baseCoin": "BTT"
+        },
+        {
+          "symbol": "USDSUSDT",
+          "price": "0.00000000",
+          "baseCoin": "USDS"
+        },
+        {
+          "symbol": "ONGUSDT",
+          "price": "0.19730000",
+          "baseCoin": "ONG"
+        },
+        {
+          "symbol": "HOTUSDT",
+          "price": "0.00098200",
+          "baseCoin": "HOT"
+        },
+        {
+          "symbol": "ZILUSDT",
+          "price": "0.01182000",
+          "baseCoin": "ZIL"
+        },
+        {
+          "symbol": "ZRXUSDT",
+          "price": "0.25480000",
+          "baseCoin": "ZRX"
+        },
+        {
+          "symbol": "FETUSDT",
+          "price": "0.59100000",
+          "baseCoin": "FET"
+        },
+        {
+          "symbol": "BATUSDT",
+          "price": "0.13440000",
+          "baseCoin": "BAT"
+        },
+        {
+          "symbol": "XMRUSDT",
+          "price": "118.70000000",
+          "baseCoin": "XMR"
+        },
+        {
+          "symbol": "ZECUSDT",
+          "price": "30.96000000",
+          "baseCoin": "ZEC"
+        },
+        {
+          "symbol": "IOSTUSDT",
+          "price": "0.00381300",
+          "baseCoin": "IOST"
+        },
+        {
+          "symbol": "CELRUSDT",
+          "price": "0.00909000",
+          "baseCoin": "CELR"
+        },
+        {
+          "symbol": "DASHUSDT",
+          "price": "20.89000000",
+          "baseCoin": "DASH"
+        },
+        {
+          "symbol": "NANOUSDT",
+          "price": "0.00000000",
+          "baseCoin": "NANO"
+        },
+        {
+          "symbol": "OMGUSDT",
+          "price": "0.38300000",
+          "baseCoin": "OMG"
+        },
+        {
+          "symbol": "THETAUSDT",
+          "price": "0.62600000",
+          "baseCoin": "THETA"
+        },
+        {
+          "symbol": "ENJUSDT",
+          "price": "0.08920000",
+          "baseCoin": "ENJ"
+        },
+        {
+          "symbol": "MITHUSDT",
+          "price": "0.00345000",
+          "baseCoin": "MITH"
+        },
+        {
+          "symbol": "MATICUSDT",
+          "price": "0.37940000",
+          "baseCoin": "MATIC"
+        },
+        {
+          "symbol": "ATOMUSDT",
+          "price": "4.05300000",
+          "baseCoin": "ATOM"
+        },
+        {
+          "symbol": "TFUELUSDT",
+          "price": "0.03574000",
+          "baseCoin": "TFUEL"
+        },
+        {
+          "symbol": "ONEUSDT",
+          "price": "0.01166000",
+          "baseCoin": "ONE"
+        },
+        {
+          "symbol": "FTMUSDT",
+          "price": "0.69940000",
+          "baseCoin": "FTM"
+        },
+        {
+          "symbol": "ALGOUSDT",
+          "price": "0.19160000",
+          "baseCoin": "ALGO"
+        },
+        {
+          "symbol": "USDSBUSDT",
+          "price": "0.00000000",
+          "baseCoin": "USDSB"
+        },
+        {
+          "symbol": "GTOUSDT",
+          "price": "0.01233000",
+          "baseCoin": "GTO"
+        },
+        {
+          "symbol": "ERDUSDT",
+          "price": "0.00000000",
+          "baseCoin": "ERD"
+        },
+        {
+          "symbol": "DOGEUSDT",
+          "price": "0.16123000",
+          "baseCoin": "DOGE"
+        },
+        {
+          "symbol": "DUSKUSDT",
+          "price": "0.08030000",
+          "baseCoin": "DUSK"
+        },
+        {
+          "symbol": "ANKRUSDT",
+          "price": "0.01861000",
+          "baseCoin": "ANKR"
+        },
+        {
+          "symbol": "WINUSDT",
+          "price": "0.00005054",
+          "baseCoin": "WIN"
+        },
+        {
+          "symbol": "COSUSDT",
+          "price": "0.00326700",
+          "baseCoin": "COS"
+        },
+        {
+          "symbol": "NPXSUSDT",
+          "price": "0.00000000",
+          "baseCoin": "NPXS"
+        },
+        {
+          "symbol": "COCOSUSDT",
+          "price": "1.75460000",
+          "baseCoin": "COCOS"
+        },
+        {
+          "symbol": "MTLUSDT",
+          "price": "0.82800000",
+          "baseCoin": "MTL"
+        },
+        {
+          "symbol": "TOMOUSDT",
+          "price": "1.38190000",
+          "baseCoin": "TOMO"
+        },
+        {
+          "symbol": "PERLUSDT",
+          "price": "0.00460000",
+          "baseCoin": "PERL"
+        },
+        {
+          "symbol": "DENTUSDT",
+          "price": "0.00069700",
+          "baseCoin": "DENT"
+        },
+        {
+          "symbol": "MFTUSDT",
+          "price": "0.00525400",
+          "baseCoin": "MFT"
+        },
+        {
+          "symbol": "KEYUSDT",
+          "price": "0.00125300",
+          "baseCoin": "KEY"
+        },
+        {
+          "symbol": "STORMUSDT",
+          "price": "0.00000000",
+          "baseCoin": "STORM"
+        },
+        {
+          "symbol": "DOCKUSDT",
+          "price": "0.00390000",
+          "baseCoin": "DOCK"
+        },
+        {
+          "symbol": "WANUSDT",
+          "price": "0.10850000",
+          "baseCoin": "WAN"
+        },
+        {
+          "symbol": "FUNUSDT",
+          "price": "0.00559000",
+          "baseCoin": "FUN"
+        },
+        {
+          "symbol": "CVCUSDT",
+          "price": "0.10620000",
+          "baseCoin": "CVC"
+        },
+        {
+          "symbol": "CHZUSDT",
+          "price": "0.03710000",
+          "baseCoin": "CHZ"
+        },
+        {
+          "symbol": "BANDUSDT",
+          "price": "0.72300000",
+          "baseCoin": "BAND"
+        },
+        {
+          "symbol": "BUSDUSDT",
+          "price": "1.00030000",
+          "baseCoin": "BUSD"
+        },
+        {
+          "symbol": "BEAMUSDT",
+          "price": "0.06520000",
+          "baseCoin": "BEAM"
+        },
+        {
+          "symbol": "XTZUSDT",
+          "price": "0.50800000",
+          "baseCoin": "XTZ"
+        },
+        {
+          "symbol": "RENUSDT",
+          "price": "0.04274000",
+          "baseCoin": "REN"
+        },
+        {
+          "symbol": "RVNUSDT",
+          "price": "0.01111000",
+          "baseCoin": "RVN"
+        },
+        {
+          "symbol": "HCUSDT",
+          "price": "0.00000000",
+          "baseCoin": "HC"
+        },
+        {
+          "symbol": "HBARUSDT",
+          "price": "0.17053000",
+          "baseCoin": "HBAR"
+        },
+        {
+          "symbol": "NKNUSDT",
+          "price": "0.02980000",
+          "baseCoin": "NKN"
+        },
+        {
+          "symbol": "STXUSDT",
+          "price": "0.75700000",
+          "baseCoin": "STX"
+        },
+        {
+          "symbol": "KAVAUSDT",
+          "price": "0.41210000",
+          "baseCoin": "KAVA"
+        },
+        {
+          "symbol": "ARPAUSDT",
+          "price": "0.02363000",
+          "baseCoin": "ARPA"
+        },
+        {
+          "symbol": "IOTXUSDT",
+          "price": "0.01817000",
+          "baseCoin": "IOTX"
+        },
+        {
+          "symbol": "RLCUSDT",
+          "price": "1.14900000",
+          "baseCoin": "RLC"
+        },
+        {
+          "symbol": "MCOUSDT",
+          "price": "0.00000000",
+          "baseCoin": "MCO"
+        },
+        {
+          "symbol": "CTXCUSDT",
+          "price": "0.06340000",
+          "baseCoin": "CTXC"
+        },
+        {
+          "symbol": "BCHUSDT",
+          "price": "345.50000000",
+          "baseCoin": "BCH"
+        },
+        {
+          "symbol": "TROYUSDT",
+          "price": "0.00006900",
+          "baseCoin": "TROY"
+        },
+        {
+          "symbol": "VITEUSDT",
+          "price": "0.00086000",
+          "baseCoin": "VITE"
+        },
+        {
+          "symbol": "FTTUSDT",
+          "price": "0.81900000",
+          "baseCoin": "FTT"
+        },
+        {
+          "symbol": "EURUSDT",
+          "price": "1.15360000",
+          "baseCoin": "EUR"
+        },
+        {
+          "symbol": "OGNUSDT",
+          "price": "0.05850000",
+          "baseCoin": "OGN"
+        },
+        {
+          "symbol": "DREPUSDT",
+          "price": "0.02560000",
+          "baseCoin": "DREP"
+        },
+        {
+          "symbol": "BULLUSDT",
+          "price": "0.00000000",
+          "baseCoin": "BULL"
+        },
+        {
+          "symbol": "BEARUSDT",
+          "price": "0.00000000",
+          "baseCoin": "BEAR"
+        },
+        {
+          "symbol": "ETHBULLUSDT",
+          "price": "0.00000000",
+          "baseCoin": "ETHBULL"
+        },
+        {
+          "symbol": "ETHBEARUSDT",
+          "price": "0.00000000",
+          "baseCoin": "ETHBEAR"
+        },
+        {
+          "symbol": "TCTUSDT",
+          "price": "0.00312000",
+          "baseCoin": "TCT"
+        },
+        {
+          "symbol": "WRXUSDT",
+          "price": "0.01730000",
+          "baseCoin": "WRX"
+        },
+        {
+          "symbol": "BTSUSDT",
+          "price": "0.00540000",
+          "baseCoin": "BTS"
+        },
+        {
+          "symbol": "LSKUSDT",
+          "price": "0.51800000",
+          "baseCoin": "LSK"
+        },
+        {
+          "symbol": "BNTUSDT",
+          "price": "0.39350000",
+          "baseCoin": "BNT"
+        },
+        {
+          "symbol": "LTOUSDT",
+          "price": "0.03230000",
+          "baseCoin": "LTO"
+        },
+        {
+          "symbol": "EOSBULLUSDT",
+          "price": "0.00000000",
+          "baseCoin": "EOSBULL"
+        },
+        {
+          "symbol": "EOSBEARUSDT",
+          "price": "0.00000000",
+          "baseCoin": "EOSBEAR"
+        },
+        {
+          "symbol": "XRPBULLUSDT",
+          "price": "0.00000000",
+          "baseCoin": "XRPBULL"
+        },
+        {
+          "symbol": "XRPBEARUSDT",
+          "price": "0.00000000",
+          "baseCoin": "XRPBEAR"
+        },
+        {
+          "symbol": "STRATUSDT",
+          "price": "0.00000000",
+          "baseCoin": "STRAT"
+        },
+        {
+          "symbol": "AIONUSDT",
+          "price": "0.00943000",
+          "baseCoin": "AION"
+        },
+        {
+          "symbol": "MBLUSDT",
+          "price": "0.00254500",
+          "baseCoin": "MBL"
+        },
+        {
+          "symbol": "COTIUSDT",
+          "price": "0.06846000",
+          "baseCoin": "COTI"
+        },
+        {
+          "symbol": "BNBBULLUSDT",
+          "price": "0.00000000",
+          "baseCoin": "BNBBULL"
+        },
+        {
+          "symbol": "BNBBEARUSDT",
+          "price": "0.00000000",
+          "baseCoin": "BNBBEAR"
+        },
+        {
+          "symbol": "STPTUSDT",
+          "price": "0.04142000",
+          "baseCoin": "STPT"
+        },
+        {
+          "symbol": "WTCUSDT",
+          "price": "0.01030000",
+          "baseCoin": "WTC"
+        },
+        {
+          "symbol": "DATAUSDT",
+          "price": "0.01664000",
+          "baseCoin": "DATA"
+        },
+        {
+          "symbol": "XZCUSDT",
+          "price": "0.00000000",
+          "baseCoin": "XZC"
+        },
+        {
+          "symbol": "SOLUSDT",
+          "price": "139.24000000",
+          "baseCoin": "SOL"
+        },
+        {
+          "symbol": "CTSIUSDT",
+          "price": "0.06170000",
+          "baseCoin": "CTSI"
+        },
+        {
+          "symbol": "HIVEUSDT",
+          "price": "0.23660000",
+          "baseCoin": "HIVE"
+        },
+        {
+          "symbol": "CHRUSDT",
+          "price": "0.08770000",
+          "baseCoin": "CHR"
+        },
+        {
+          "symbol": "BTCUPUSDT",
+          "price": "16.60000000",
+          "baseCoin": "BTCUP"
+        },
+        {
+          "symbol": "BTCDOWNUSDT",
+          "price": "0.00118500",
+          "baseCoin": "BTCDOWN"
+        },
+        {
+          "symbol": "GXSUSDT",
+          "price": "0.00000000",
+          "baseCoin": "GXS"
+        },
+        {
+          "symbol": "ARDRUSDT",
+          "price": "0.09328000",
+          "baseCoin": "ARDR"
+        },
+        {
+          "symbol": "LENDUSDT",
+          "price": "0.00000000",
+          "baseCoin": "LEND"
+        },
+        {
+          "symbol": "MDTUSDT",
+          "price": "0.02843000",
+          "baseCoin": "MDT"
+        },
+        {
+          "symbol": "STMXUSDT",
+          "price": "0.00456500",
+          "baseCoin": "STMX"
+        },
+        {
+          "symbol": "KNCUSDT",
+          "price": "0.34400000",
+          "baseCoin": "KNC"
+        },
+        {
+          "symbol": "REPUSDT",
+          "price": "4.73000000",
+          "baseCoin": "REP"
+        },
+        {
+          "symbol": "LRCUSDT",
+          "price": "0.09550000",
+          "baseCoin": "LRC"
+        },
+        {
+          "symbol": "PNTUSDT",
+          "price": "0.03500000",
+          "baseCoin": "PNT"
+        },
+        {
+          "symbol": "COMPUSDT",
+          "price": "39.66000000",
+          "baseCoin": "COMP"
+        },
+        {
+          "symbol": "BKRWUSDT",
+          "price": "0.00000000",
+          "baseCoin": "BKRW"
+        },
+        {
+          "symbol": "SCUSDT",
+          "price": "0.00340400",
+          "baseCoin": "SC"
+        },
+        {
+          "symbol": "ZENUSDT",
+          "price": "8.67000000",
+          "baseCoin": "ZEN"
+        },
+        {
+          "symbol": "SNXUSDT",
+          "price": "0.66700000",
+          "baseCoin": "SNX"
+        },
+        {
+          "symbol": "ETHUPUSDT",
+          "price": "11.65100000",
+          "baseCoin": "ETHUP"
+        },
+        {
+          "symbol": "ETHDOWNUSDT",
+          "price": "0.04570000",
+          "baseCoin": "ETHDOWN"
+        },
+        {
+          "symbol": "ADAUPUSDT",
+          "price": "0.10400000",
+          "baseCoin": "ADAUP"
+        },
+        {
+          "symbol": "ADADOWNUSDT",
+          "price": "0.00191700",
+          "baseCoin": "ADADOWN"
+        },
+        {
+          "symbol": "LINKUPUSDT",
+          "price": "0.00608000",
+          "baseCoin": "LINKUP"
+        },
+        {
+          "symbol": "LINKDOWNUSDT",
+          "price": "0.00089500",
+          "baseCoin": "LINKDOWN"
+        },
+        {
+          "symbol": "VTHOUSDT",
+          "price": "0.00246900",
+          "baseCoin": "VTHO"
+        },
+        {
+          "symbol": "DGBUSDT",
+          "price": "0.01004000",
+          "baseCoin": "DGB"
+        },
+        {
+          "symbol": "GBPUSDT",
+          "price": "1.18000000",
+          "baseCoin": "GBP"
+        },
+        {
+          "symbol": "SXPUSDT",
+          "price": "0.20220000",
+          "baseCoin": "SXP"
+        },
+        {
+          "symbol": "MKRUSDT",
+          "price": "1346.00000000",
+          "baseCoin": "MKR"
+        },
+        {
+          "symbol": "DAIUSDT",
+          "price": "0.00000000",
+          "baseCoin": "DAI"
+        },
+        {
+          "symbol": "DCRUSDT",
+          "price": "12.66000000",
+          "baseCoin": "DCR"
+        },
+        {
+          "symbol": "STORJUSDT",
+          "price": "0.29230000",
+          "baseCoin": "STORJ"
+        },
+        {
+          "symbol": "BNBUPUSDT",
+          "price": "61.80000000",
+          "baseCoin": "BNBUP"
+        },
+        {
+          "symbol": "BNBDOWNUSDT",
+          "price": "0.00215100",
+          "baseCoin": "BNBDOWN"
+        },
+        {
+          "symbol": "XTZUPUSDT",
+          "price": "0.00000000",
+          "baseCoin": "XTZUP"
+        },
+        {
+          "symbol": "XTZDOWNUSDT",
+          "price": "0.00000000",
+          "baseCoin": "XTZDOWN"
+        },
+        {
+          "symbol": "MANAUSDT",
+          "price": "0.30280000",
+          "baseCoin": "MANA"
+        },
+        {
+          "symbol": "AUDUSDT",
+          "price": "0.72520000",
+          "baseCoin": "AUD"
+        },
+        {
+          "symbol": "YFIUSDT",
+          "price": "4694.00000000",
+          "baseCoin": "YFI"
+        },
+        {
+          "symbol": "BALUSDT",
+          "price": "0.96700000",
+          "baseCoin": "BAL"
+        },
+        {
+          "symbol": "BLZUSDT",
+          "price": "0.05820000",
+          "baseCoin": "BLZ"
+        },
+        {
+          "symbol": "IRISUSDT",
+          "price": "0.00521000",
+          "baseCoin": "IRIS"
+        },
+        {
+          "symbol": "KMDUSDT",
+          "price": "0.13840000",
+          "baseCoin": "KMD"
+        },
+        {
+          "symbol": "JSTUSDT",
+          "price": "0.03121000",
+          "baseCoin": "JST"
+        },
+        {
+          "symbol": "SRMUSDT",
+          "price": "0.24442000",
+          "baseCoin": "SRM"
+        },
+        {
+          "symbol": "ANTUSDT",
+          "price": "7.40700000",
+          "baseCoin": "ANT"
+        },
+        {
+          "symbol": "CRVUSDT",
+          "price": "0.59770000",
+          "baseCoin": "CRV"
+        },
+        {
+          "symbol": "SANDUSDT",
+          "price": "0.27130000",
+          "baseCoin": "SAND"
+        },
+        {
+          "symbol": "OCEANUSDT",
+          "price": "0.61230000",
+          "baseCoin": "OCEAN"
+        },
+        {
+          "symbol": "NMRUSDT",
+          "price": "7.62000000",
+          "baseCoin": "NMR"
+        },
+        {
+          "symbol": "DOTUSDT",
+          "price": "3.74700000",
+          "baseCoin": "DOT"
+        },
+        {
+          "symbol": "LUNAUSDT",
+          "price": "0.16550000",
+          "baseCoin": "LUNA"
+        },
+        {
+          "symbol": "RSRUSDT",
+          "price": "0.00842700",
+          "baseCoin": "RSR"
+        },
+        {
+          "symbol": "PAXGUSDT",
+          "price": "3507.00000000",
+          "baseCoin": "PAXG"
+        },
+        {
+          "symbol": "WNXMUSDT",
+          "price": "73.26000000",
+          "baseCoin": "WNXM"
+        },
+        {
+          "symbol": "TRBUSDT",
+          "price": "26.16000000",
+          "baseCoin": "TRB"
+        },
+        {
+          "symbol": "BZRXUSDT",
+          "price": "0.00000000",
+          "baseCoin": "BZRX"
+        },
+        {
+          "symbol": "SUSHIUSDT",
+          "price": "0.59900000",
+          "baseCoin": "SUSHI"
+        },
+        {
+          "symbol": "YFIIUSDT",
+          "price": "435.50000000",
+          "baseCoin": "YFII"
+        },
+        {
+          "symbol": "KSMUSDT",
+          "price": "13.92000000",
+          "baseCoin": "KSM"
+        },
+        {
+          "symbol": "EGLDUSDT",
+          "price": "14.06000000",
+          "baseCoin": "EGLD"
+        },
+        {
+          "symbol": "DIAUSDT",
+          "price": "0.40440000",
+          "baseCoin": "DIA"
+        },
+        {
+          "symbol": "RUNEUSDT",
+          "price": "1.23100000",
+          "baseCoin": "RUNE"
+        },
+        {
+          "symbol": "FIOUSDT",
+          "price": "0.01455000",
+          "baseCoin": "FIO"
+        },
+        {
+          "symbol": "UMAUSDT",
+          "price": "1.12200000",
+          "baseCoin": "UMA"
+        },
+        {
+          "symbol": "EOSUPUSDT",
+          "price": "0.00000000",
+          "baseCoin": "EOSUP"
+        },
+        {
+          "symbol": "EOSDOWNUSDT",
+          "price": "0.00000000",
+          "baseCoin": "EOSDOWN"
+        },
+        {
+          "symbol": "TRXUPUSDT",
+          "price": "0.03854000",
+          "baseCoin": "TRXUP"
+        },
+        {
+          "symbol": "TRXDOWNUSDT",
+          "price": "1.13900000",
+          "baseCoin": "TRXDOWN"
+        },
+        {
+          "symbol": "XRPUPUSDT",
+          "price": "0.08550000",
+          "baseCoin": "XRPUP"
+        },
+        {
+          "symbol": "XRPDOWNUSDT",
+          "price": "0.00008172",
+          "baseCoin": "XRPDOWN"
+        },
+        {
+          "symbol": "DOTUPUSDT",
+          "price": "0.09600000",
+          "baseCoin": "DOTUP"
+        },
+        {
+          "symbol": "DOTDOWNUSDT",
+          "price": "16.73700000",
+          "baseCoin": "DOTDOWN"
+        },
+        {
+          "symbol": "BELUSDT",
+          "price": "0.37940000",
+          "baseCoin": "BEL"
+        },
+        {
+          "symbol": "WINGUSDT",
+          "price": "1.28100000",
+          "baseCoin": "WING"
+        },
+        {
+          "symbol": "LTCUPUSDT",
+          "price": "0.00000000",
+          "baseCoin": "LTCUP"
+        },
+        {
+          "symbol": "LTCDOWNUSDT",
+          "price": "0.00000000",
+          "baseCoin": "LTCDOWN"
+        },
+        {
+          "symbol": "UNIUSDT",
+          "price": "5.27600000",
+          "baseCoin": "UNI"
+        },
+        {
+          "symbol": "NBSUSDT",
+          "price": "0.00166000",
+          "baseCoin": "NBS"
+        },
+        {
+          "symbol": "OXTUSDT",
+          "price": "0.06960000",
+          "baseCoin": "OXT"
+        },
+        {
+          "symbol": "SUNUSDT",
+          "price": "0.01715000",
+          "baseCoin": "SUN"
+        },
+        {
+          "symbol": "AVAXUSDT",
+          "price": "19.91000000",
+          "baseCoin": "AVAX"
+        },
+        {
+          "symbol": "HNTUSDT",
+          "price": "4.67000000",
+          "baseCoin": "HNT"
+        },
+        {
+          "symbol": "FLMUSDT",
+          "price": "0.01890000",
+          "baseCoin": "FLM"
+        },
+        {
+          "symbol": "UNIUPUSDT",
+          "price": "0.00000000",
+          "baseCoin": "UNIUP"
+        },
+        {
+          "symbol": "UNIDOWNUSDT",
+          "price": "0.00000000",
+          "baseCoin": "UNIDOWN"
+        },
+        {
+          "symbol": "ORNUSDT",
+          "price": "1.05300000",
+          "baseCoin": "ORN"
+        },
+        {
+          "symbol": "UTKUSDT",
+          "price": "0.03157000",
+          "baseCoin": "UTK"
+        },
+        {
+          "symbol": "XVSUSDT",
+          "price": "5.16000000",
+          "baseCoin": "XVS"
+        },
+        {
+          "symbol": "ALPHAUSDT",
+          "price": "0.03050000",
+          "baseCoin": "ALPHA"
+        },
+        {
+          "symbol": "AAVEUSDT",
+          "price": "144.07000000",
+          "baseCoin": "AAVE"
+        },
+        {
+          "symbol": "NEARUSDT",
+          "price": "2.17900000",
+          "baseCoin": "NEAR"
+        },
+        {
+          "symbol": "SXPUPUSDT",
+          "price": "0.00000000",
+          "baseCoin": "SXPUP"
+        },
+        {
+          "symbol": "SXPDOWNUSDT",
+          "price": "0.00000000",
+          "baseCoin": "SXPDOWN"
+        },
+        {
+          "symbol": "FILUSDT",
+          "price": "2.57600000",
+          "baseCoin": "FIL"
+        },
+        {
+          "symbol": "FILUPUSDT",
+          "price": "0.00000000",
+          "baseCoin": "FILUP"
+        },
+        {
+          "symbol": "FILDOWNUSDT",
+          "price": "0.00000000",
+          "baseCoin": "FILDOWN"
+        },
+        {
+          "symbol": "YFIUPUSDT",
+          "price": "0.00000000",
+          "baseCoin": "YFIUP"
+        },
+        {
+          "symbol": "YFIDOWNUSDT",
+          "price": "0.00000000",
+          "baseCoin": "YFIDOWN"
+        },
+        {
+          "symbol": "INJUSDT",
+          "price": "8.52000000",
+          "baseCoin": "INJ"
+        },
+        {
+          "symbol": "AUDIOUSDT",
+          "price": "0.08760000",
+          "baseCoin": "AUDIO"
+        },
+        {
+          "symbol": "CTKUSDT",
+          "price": "0.33990000",
+          "baseCoin": "CTK"
+        },
+        {
+          "symbol": "BCHUPUSDT",
+          "price": "0.00000000",
+          "baseCoin": "BCHUP"
+        },
+        {
+          "symbol": "BCHDOWNUSDT",
+          "price": "0.00000000",
+          "baseCoin": "BCHDOWN"
+        },
+        {
+          "symbol": "AKROUSDT",
+          "price": "0.00098100",
+          "baseCoin": "AKRO"
+        },
+        {
+          "symbol": "AXSUSDT",
+          "price": "2.26800000",
+          "baseCoin": "AXS"
+        },
+        {
+          "symbol": "HARDUSDT",
+          "price": "0.00950000",
+          "baseCoin": "HARD"
+        },
+        {
+          "symbol": "DNTUSDT",
+          "price": "0.03600000",
+          "baseCoin": "DNT"
+        },
+        {
+          "symbol": "STRAXUSDT",
+          "price": "0.05582000",
+          "baseCoin": "STRAX"
+        },
+        {
+          "symbol": "UNFIUSDT",
+          "price": "1.34100000",
+          "baseCoin": "UNFI"
+        },
+        {
+          "symbol": "ROSEUSDT",
+          "price": "0.02612000",
+          "baseCoin": "ROSE"
+        },
+        {
+          "symbol": "AVAUSDT",
+          "price": "0.58720000",
+          "baseCoin": "AVA"
+        },
+        {
+          "symbol": "XEMUSDT",
+          "price": "0.01596000",
+          "baseCoin": "XEM"
+        },
+        {
+          "symbol": "AAVEUPUSDT",
+          "price": "0.00000000",
+          "baseCoin": "AAVEUP"
+        },
+        {
+          "symbol": "AAVEDOWNUSDT",
+          "price": "0.00000000",
+          "baseCoin": "AAVEDOWN"
+        },
+        {
+          "symbol": "SKLUSDT",
+          "price": "0.02245000",
+          "baseCoin": "SKL"
+        },
+        {
+          "symbol": "SUSDUSDT",
+          "price": "0.00000000",
+          "baseCoin": "SUSD"
+        },
+        {
+          "symbol": "SUSHIUPUSDT",
+          "price": "0.00000000",
+          "baseCoin": "SUSHIUP"
+        },
+        {
+          "symbol": "SUSHIDOWNUSDT",
+          "price": "0.00000000",
+          "baseCoin": "SUSHIDOWN"
+        },
+        {
+          "symbol": "XLMUPUSDT",
+          "price": "0.00000000",
+          "baseCoin": "XLMUP"
+        },
+        {
+          "symbol": "XLMDOWNUSDT",
+          "price": "0.00000000",
+          "baseCoin": "XLMDOWN"
+        },
+        {
+          "symbol": "GRTUSDT",
+          "price": "0.08320000",
+          "baseCoin": "GRT"
+        },
+        {
+          "symbol": "JUVUSDT",
+          "price": "0.96400000",
+          "baseCoin": "JUV"
+        },
+        {
+          "symbol": "PSGUSDT",
+          "price": "1.92500000",
+          "baseCoin": "PSG"
+        },
+        {
+          "symbol": "1INCHUSDT",
+          "price": "0.17420000",
+          "baseCoin": "1INCH"
+        },
+        {
+          "symbol": "REEFUSDT",
+          "price": "0.00068800",
+          "baseCoin": "REEF"
+        },
+        {
+          "symbol": "OGUSDT",
+          "price": "3.82100000",
+          "baseCoin": "OG"
+        },
+        {
+          "symbol": "ATMUSDT",
+          "price": "1.05300000",
+          "baseCoin": "ATM"
+        },
+        {
+          "symbol": "ASRUSDT",
+          "price": "1.05400000",
+          "baseCoin": "ASR"
+        },
+        {
+          "symbol": "CELOUSDT",
+          "price": "0.31150000",
+          "baseCoin": "CELO"
+        },
+        {
+          "symbol": "RIFUSDT",
+          "price": "0.04300000",
+          "baseCoin": "RIF"
+        },
+        {
+          "symbol": "BTCSTUSDT",
+          "price": "5.35000000",
+          "baseCoin": "BTCST"
+        },
+        {
+          "symbol": "TRUUSDT",
+          "price": "0.03530000",
+          "baseCoin": "TRU"
+        },
+        {
+          "symbol": "CKBUSDT",
+          "price": "0.00478800",
+          "baseCoin": "CKB"
+        },
+        {
+          "symbol": "TWTUSDT",
+          "price": "0.77160000",
+          "baseCoin": "TWT"
+        },
+        {
+          "symbol": "FIROUSDT",
+          "price": "0.30000000",
+          "baseCoin": "FIRO"
+        },
+        {
+          "symbol": "LITUSDT",
+          "price": "0.74300000",
+          "baseCoin": "LIT"
+        },
+        {
+          "symbol": "SFPUSDT",
+          "price": "0.47860000",
+          "baseCoin": "SFP"
+        },
+        {
+          "symbol": "DODOUSDT",
+          "price": "0.04370000",
+          "baseCoin": "DODO"
+        },
+        {
+          "symbol": "CAKEUSDT",
+          "price": "1.97300000",
+          "baseCoin": "CAKE"
+        },
+        {
+          "symbol": "ACMUSDT",
+          "price": "0.78500000",
+          "baseCoin": "ACM"
+        },
+        {
+          "symbol": "BADGERUSDT",
+          "price": "0.76200000",
+          "baseCoin": "BADGER"
+        },
+        {
+          "symbol": "FISUSDT",
+          "price": "0.13980000",
+          "baseCoin": "FIS"
+        },
+        {
+          "symbol": "OMUSDT",
+          "price": "0.52100000",
+          "baseCoin": "OM"
+        },
+        {
+          "symbol": "PONDUSDT",
+          "price": "0.00853000",
+          "baseCoin": "POND"
+        },
+        {
+          "symbol": "DEGOUSDT",
+          "price": "1.80900000",
+          "baseCoin": "DEGO"
+        },
+        {
+          "symbol": "ALICEUSDT",
+          "price": "0.43400000",
+          "baseCoin": "ALICE"
+        },
+        {
+          "symbol": "LINAUSDT",
+          "price": "0.00033700",
+          "baseCoin": "LINA"
+        },
+        {
+          "symbol": "PERPUSDT",
+          "price": "0.23230000",
+          "baseCoin": "PERP"
+        },
+        {
+          "symbol": "RAMPUSDT",
+          "price": "0.00000000",
+          "baseCoin": "RAMP"
+        },
+        {
+          "symbol": "SUPERUSDT",
+          "price": "0.55000000",
+          "baseCoin": "SUPER"
+        },
+        {
+          "symbol": "CFXUSDT",
+          "price": "0.07150000",
+          "baseCoin": "CFX"
+        },
+        {
+          "symbol": "EPSUSDT",
+          "price": "0.00000000",
+          "baseCoin": "EPS"
+        },
+        {
+          "symbol": "AUTOUSDT",
+          "price": "95.30000000",
+          "baseCoin": "AUTO"
+        },
+        {
+          "symbol": "TKOUSDT",
+          "price": "0.15360000",
+          "baseCoin": "TKO"
+        },
+        {
+          "symbol": "PUNDIXUSDT",
+          "price": "0.29060000",
+          "baseCoin": "PUNDIX"
+        },
+        {
+          "symbol": "TLMUSDT",
+          "price": "0.00537000",
+          "baseCoin": "TLM"
+        },
+        {
+          "symbol": "1INCHUPUSDT",
+          "price": "0.00000000",
+          "baseCoin": "1INCHUP"
+        },
+        {
+          "symbol": "1INCHDOWNUSDT",
+          "price": "0.00000000",
+          "baseCoin": "1INCHDOWN"
+        },
+        {
+          "symbol": "BTGUSDT",
+          "price": "17.65000000",
+          "baseCoin": "BTG"
+        },
+        {
+          "symbol": "MIRUSDT",
+          "price": "0.14168000",
+          "baseCoin": "MIR"
+        },
+        {
+          "symbol": "BARUSDT",
+          "price": "1.66700000",
+          "baseCoin": "BAR"
+        },
+        {
+          "symbol": "FORTHUSDT",
+          "price": "2.41500000",
+          "baseCoin": "FORTH"
+        },
+        {
+          "symbol": "BAKEUSDT",
+          "price": "0.12460000",
+          "baseCoin": "BAKE"
+        },
+        {
+          "symbol": "BURGERUSDT",
+          "price": "0.01720000",
+          "baseCoin": "BURGER"
+        },
+        {
+          "symbol": "SLPUSDT",
+          "price": "0.00156400",
+          "baseCoin": "SLP"
+        },
+        {
+          "symbol": "SHIBUSDT",
+          "price": "0.00001241",
+          "baseCoin": "SHIB"
+        },
+        {
+          "symbol": "ICPUSDT",
+          "price": "4.73900000",
+          "baseCoin": "ICP"
+        },
+        {
+          "symbol": "ARUSDT",
+          "price": "5.61000000",
+          "baseCoin": "AR"
+        },
+        {
+          "symbol": "POLSUSDT",
+          "price": "0.30790000",
+          "baseCoin": "POLS"
+        },
+        {
+          "symbol": "MDXUSDT",
+          "price": "0.03450000",
+          "baseCoin": "MDX"
+        },
+        {
+          "symbol": "MASKUSDT",
+          "price": "1.06000000",
+          "baseCoin": "MASK"
+        },
+        {
+          "symbol": "LPTUSDT",
+          "price": "4.16300000",
+          "baseCoin": "LPT"
+        },
+        {
+          "symbol": "NUUSDT",
+          "price": "0.00000000",
+          "baseCoin": "NU"
+        },
+        {
+          "symbol": "XVGUSDT",
+          "price": "0.00461500",
+          "baseCoin": "XVG"
+        },
+        {
+          "symbol": "ATAUSDT",
+          "price": "0.05650000",
+          "baseCoin": "ATA"
+        },
+        {
+          "symbol": "GTCUSDT",
+          "price": "0.29800000",
+          "baseCoin": "GTC"
+        },
+        {
+          "symbol": "TORNUSDT",
+          "price": "4.06000000",
+          "baseCoin": "TORN"
+        },
+        {
+          "symbol": "KEEPUSDT",
+          "price": "0.00000000",
+          "baseCoin": "KEEP"
+        },
+        {
+          "symbol": "ERNUSDT",
+          "price": "2.18300000",
+          "baseCoin": "ERN"
+        },
+        {
+          "symbol": "KLAYUSDT",
+          "price": "0.12550000",
+          "baseCoin": "KLAY"
+        },
+        {
+          "symbol": "PHAUSDT",
+          "price": "0.10020000",
+          "baseCoin": "PHA"
+        },
+        {
+          "symbol": "BONDUSDT",
+          "price": "2.15200000",
+          "baseCoin": "BOND"
+        },
+        {
+          "symbol": "MLNUSDT",
+          "price": "8.10000000",
+          "baseCoin": "MLN"
+        },
+        {
+          "symbol": "DEXEUSDT",
+          "price": "14.55300000",
+          "baseCoin": "DEXE"
+        },
+        {
+          "symbol": "C98USDT",
+          "price": "0.05440000",
+          "baseCoin": "C98"
+        },
+        {
+          "symbol": "CLVUSDT",
+          "price": "0.02937000",
+          "baseCoin": "CLV"
+        },
+        {
+          "symbol": "QNTUSDT",
+          "price": "66.70000000",
+          "baseCoin": "QNT"
+        },
+        {
+          "symbol": "FLOWUSDT",
+          "price": "0.37400000",
+          "baseCoin": "FLOW"
+        },
+        {
+          "symbol": "TVKUSDT",
+          "price": "0.05405000",
+          "baseCoin": "TVK"
+        },
+        {
+          "symbol": "MINAUSDT",
+          "price": "0.21740000",
+          "baseCoin": "MINA"
+        },
+        {
+          "symbol": "RAYUSDT",
+          "price": "2.32500000",
+          "baseCoin": "RAY"
+        },
+        {
+          "symbol": "FARMUSDT",
+          "price": "29.06000000",
+          "baseCoin": "FARM"
+        },
+        {
+          "symbol": "ALPACAUSDT",
+          "price": "0.04220000",
+          "baseCoin": "ALPACA"
+        },
+        {
+          "symbol": "QUICKUSDT",
+          "price": "0.02731000",
+          "baseCoin": "QUICK"
+        },
+        {
+          "symbol": "MBOXUSDT",
+          "price": "0.05380000",
+          "baseCoin": "MBOX"
+        },
+        {
+          "symbol": "FORUSDT",
+          "price": "0.00306000",
+          "baseCoin": "FOR"
+        },
+        {
+          "symbol": "REQUSDT",
+          "price": "0.11000000",
+          "baseCoin": "REQ"
+        },
+        {
+          "symbol": "GHSTUSDT",
+          "price": "0.47900000",
+          "baseCoin": "GHST"
+        },
+        {
+          "symbol": "WAXPUSDT",
+          "price": "0.02365000",
+          "baseCoin": "WAXP"
+        },
+        {
+          "symbol": "TRIBEUSDT",
+          "price": "0.20180000",
+          "baseCoin": "TRIBE"
+        },
+        {
+          "symbol": "GNOUSDT",
+          "price": "104.20000000",
+          "baseCoin": "GNO"
+        },
+        {
+          "symbol": "XECUSDT",
+          "price": "0.00002071",
+          "baseCoin": "XEC"
+        },
+        {
+          "symbol": "ELFUSDT",
+          "price": "0.22720000",
+          "baseCoin": "ELF"
+        },
+        {
+          "symbol": "DYDXUSDT",
+          "price": "0.58920000",
+          "baseCoin": "DYDX"
+        },
+        {
+          "symbol": "POLYUSDT",
+          "price": "0.26960000",
+          "baseCoin": "POLY"
+        },
+        {
+          "symbol": "IDEXUSDT",
+          "price": "0.02404000",
+          "baseCoin": "IDEX"
+        },
+        {
+          "symbol": "VIDTUSDT",
+          "price": "0.00115000",
+          "baseCoin": "VIDT"
+        },
+        {
+          "symbol": "USDPUSDT",
+          "price": "1.00060000",
+          "baseCoin": "USDP"
+        },
+        {
+          "symbol": "GALAUSDT",
+          "price": "0.01587000",
+          "baseCoin": "GALA"
+        },
+        {
+          "symbol": "ILVUSDT",
+          "price": "13.27000000",
+          "baseCoin": "ILV"
+        },
+        {
+          "symbol": "YGGUSDT",
+          "price": "0.18920000",
+          "baseCoin": "YGG"
+        },
+        {
+          "symbol": "SYSUSDT",
+          "price": "0.03750000",
+          "baseCoin": "SYS"
+        },
+        {
+          "symbol": "DFUSDT",
+          "price": "0.05574000",
+          "baseCoin": "DF"
+        },
+        {
+          "symbol": "FIDAUSDT",
+          "price": "0.07410000",
+          "baseCoin": "FIDA"
+        },
+        {
+          "symbol": "FRONTUSDT",
+          "price": "0.88000000",
+          "baseCoin": "FRONT"
+        },
+        {
+          "symbol": "CVPUSDT",
+          "price": "0.03390000",
+          "baseCoin": "CVP"
+        },
+        {
+          "symbol": "AGLDUSDT",
+          "price": "0.82700000",
+          "baseCoin": "AGLD"
+        },
+        {
+          "symbol": "RADUSDT",
+          "price": "0.75600000",
+          "baseCoin": "RAD"
+        },
+        {
+          "symbol": "BETAUSDT",
+          "price": "0.00036000",
+          "baseCoin": "BETA"
+        },
+        {
+          "symbol": "RAREUSDT",
+          "price": "0.05730000",
+          "baseCoin": "RARE"
+        },
+        {
+          "symbol": "LAZIOUSDT",
+          "price": "0.93400000",
+          "baseCoin": "LAZIO"
+        },
+        {
+          "symbol": "CHESSUSDT",
+          "price": "0.05970000",
+          "baseCoin": "CHESS"
+        },
+        {
+          "symbol": "ADXUSDT",
+          "price": "0.08690000",
+          "baseCoin": "ADX"
+        },
+        {
+          "symbol": "AUCTIONUSDT",
+          "price": "11.17000000",
+          "baseCoin": "AUCTION"
+        },
+        {
+          "symbol": "DARUSDT",
+          "price": "0.21707000",
+          "baseCoin": "DAR"
+        },
+        {
+          "symbol": "BNXUSDT",
+          "price": "1.78190000",
+          "baseCoin": "BNX"
+        },
+        {
+          "symbol": "RGTUSDT",
+          "price": "0.00000000",
+          "baseCoin": "RGT"
+        },
+        {
+          "symbol": "MOVRUSDT",
+          "price": "5.73300000",
+          "baseCoin": "MOVR"
+        },
+        {
+          "symbol": "CITYUSDT",
+          "price": "0.99900000",
+          "baseCoin": "CITY"
+        },
+        {
+          "symbol": "ENSUSDT",
+          "price": "14.93000000",
+          "baseCoin": "ENS"
+        },
+        {
+          "symbol": "KP3RUSDT",
+          "price": "16.48000000",
+          "baseCoin": "KP3R"
+        },
+        {
+          "symbol": "QIUSDT",
+          "price": "0.00837000",
+          "baseCoin": "QI"
+        },
+        {
+          "symbol": "PORTOUSDT",
+          "price": "0.94500000",
+          "baseCoin": "PORTO"
+        },
+        {
+          "symbol": "POWRUSDT",
+          "price": "0.18020000",
+          "baseCoin": "POWR"
+        },
+        {
+          "symbol": "VGXUSDT",
+          "price": "0.01800000",
+          "baseCoin": "VGX"
+        },
+        {
+          "symbol": "JASMYUSDT",
+          "price": "0.01421000",
+          "baseCoin": "JASMY"
+        },
+        {
+          "symbol": "AMPUSDT",
+          "price": "0.00420800",
+          "baseCoin": "AMP"
+        },
+        {
+          "symbol": "PLAUSDT",
+          "price": "0.23470000",
+          "baseCoin": "PLA"
+        },
+        {
+          "symbol": "PYRUSDT",
+          "price": "1.24000000",
+          "baseCoin": "PYR"
+        },
+        {
+          "symbol": "RNDRUSDT",
+          "price": "7.03000000",
+          "baseCoin": "RNDR"
+        },
+        {
+          "symbol": "ALCXUSDT",
+          "price": "8.59000000",
+          "baseCoin": "ALCX"
+        },
+        {
+          "symbol": "SANTOSUSDT",
+          "price": "2.30600000",
+          "baseCoin": "SANTOS"
+        },
+        {
+          "symbol": "MCUSDT",
+          "price": "0.48610000",
+          "baseCoin": "MC"
+        },
+        {
+          "symbol": "ANYUSDT",
+          "price": "0.00000000",
+          "baseCoin": "ANY"
+        },
+        {
+          "symbol": "BICOUSDT",
+          "price": "0.11320000",
+          "baseCoin": "BICO"
+        },
+        {
+          "symbol": "FLUXUSDT",
+          "price": "0.25230000",
+          "baseCoin": "FLUX"
+        },
+        {
+          "symbol": "FXSUSDT",
+          "price": "1.87100000",
+          "baseCoin": "FXS"
+        },
+        {
+          "symbol": "VOXELUSDT",
+          "price": "0.06890000",
+          "baseCoin": "VOXEL"
+        },
+        {
+          "symbol": "HIGHUSDT",
+          "price": "0.47400000",
+          "baseCoin": "HIGH"
+        },
+        {
+          "symbol": "CVXUSDT",
+          "price": "2.56200000",
+          "baseCoin": "CVX"
+        },
+        {
+          "symbol": "PEOPLEUSDT",
+          "price": "0.01205000",
+          "baseCoin": "PEOPLE"
+        },
+        {
+          "symbol": "OOKIUSDT",
+          "price": "0.00011900",
+          "baseCoin": "OOKI"
+        },
+        {
+          "symbol": "SPELLUSDT",
+          "price": "0.00055930",
+          "baseCoin": "SPELL"
+        },
+        {
+          "symbol": "USTUSDT",
+          "price": "0.00000000",
+          "baseCoin": "UST"
+        },
+        {
+          "symbol": "JOEUSDT",
+          "price": "0.17460000",
+          "baseCoin": "JOE"
+        },
+        {
+          "symbol": "ACHUSDT",
+          "price": "0.02579000",
+          "baseCoin": "ACH"
+        },
+        {
+          "symbol": "IMXUSDT",
+          "price": "0.47000000",
+          "baseCoin": "IMX"
+        },
+        {
+          "symbol": "GLMRUSDT",
+          "price": "0.07040000",
+          "baseCoin": "GLMR"
+        },
+        {
+          "symbol": "LOKAUSDT",
+          "price": "0.08660000",
+          "baseCoin": "LOKA"
+        },
+        {
+          "symbol": "SCRTUSDT",
+          "price": "0.21080000",
+          "baseCoin": "SCRT"
+        },
+        {
+          "symbol": "API3USDT",
+          "price": "0.73800000",
+          "baseCoin": "API3"
+        },
+        {
+          "symbol": "BTTCUSDT",
+          "price": "0.00000061",
+          "baseCoin": "BTTC"
+        },
+        {
+          "symbol": "ACAUSDT",
+          "price": "0.03190000",
+          "baseCoin": "ACA"
+        },
+        {
+          "symbol": "ANCUSDT",
+          "price": "0.03151000",
+          "baseCoin": "ANC"
+        },
+        {
+          "symbol": "XNOUSDT",
+          "price": "0.93000000",
+          "baseCoin": "XNO"
+        },
+        {
+          "symbol": "WOOUSDT",
+          "price": "0.06310000",
+          "baseCoin": "WOO"
+        },
+        {
+          "symbol": "ALPINEUSDT",
+          "price": "0.73300000",
+          "baseCoin": "ALPINE"
+        },
+        {
+          "symbol": "TUSDT",
+          "price": "0.01743000",
+          "baseCoin": "T"
+        },
+        {
+          "symbol": "ASTRUSDT",
+          "price": "0.02684000",
+          "baseCoin": "ASTR"
+        },
+        {
+          "symbol": "NBTUSDT",
+          "price": "0.00252000",
+          "baseCoin": "NBT"
+        },
+        {
+          "symbol": "GMTUSDT",
+          "price": "0.06000000",
+          "baseCoin": "GMT"
+        },
+        {
+          "symbol": "KDAUSDT",
+          "price": "0.46790000",
+          "baseCoin": "KDA"
+        },
+        {
+          "symbol": "APEUSDT",
+          "price": "0.46470000",
+          "baseCoin": "APE"
+        },
+        {
+          "symbol": "BSWUSDT",
+          "price": "0.01930000",
+          "baseCoin": "BSW"
+        },
+        {
+          "symbol": "BIFIUSDT",
+          "price": "162.80000000",
+          "baseCoin": "BIFI"
+        },
+        {
+          "symbol": "MULTIUSDT",
+          "price": "0.83400000",
+          "baseCoin": "MULTI"
+        },
+        {
+          "symbol": "STEEMUSDT",
+          "price": "0.14240000",
+          "baseCoin": "STEEM"
+        },
+        {
+          "symbol": "MOBUSDT",
+          "price": "0.06230000",
+          "baseCoin": "MOB"
+        },
+        {
+          "symbol": "NEXOUSDT",
+          "price": "1.03400000",
+          "baseCoin": "NEXO"
+        },
+        {
+          "symbol": "REIUSDT",
+          "price": "0.02413000",
+          "baseCoin": "REI"
+        },
+        {
+          "symbol": "GALUSDT",
+          "price": "2.54200000",
+          "baseCoin": "GAL"
+        },
+        {
+          "symbol": "LDOUSDT",
+          "price": "0.70800000",
+          "baseCoin": "LDO"
+        },
+        {
+          "symbol": "EPXUSDT",
+          "price": "0.00001940",
+          "baseCoin": "EPX"
+        },
+        {
+          "symbol": "OPUSDT",
+          "price": "0.70200000",
+          "baseCoin": "OP"
+        },
+        {
+          "symbol": "LEVERUSDT",
+          "price": "0.00046600",
+          "baseCoin": "LEVER"
+        },
+        {
+          "symbol": "STGUSDT",
+          "price": "0.19410000",
+          "baseCoin": "STG"
+        },
+        {
+          "symbol": "LUNCUSDT",
+          "price": "0.00006045",
+          "baseCoin": "LUNC"
+        },
+        {
+          "symbol": "GMXUSDT",
+          "price": "13.62000000",
+          "baseCoin": "GMX"
+        },
+        {
+          "symbol": "NEBLUSDT",
+          "price": "0.35500000",
+          "baseCoin": "NEBL"
+        },
+        {
+          "symbol": "POLYXUSDT",
+          "price": "0.15220000",
+          "baseCoin": "POLYX"
+        },
+        {
+          "symbol": "APTUSDT",
+          "price": "4.85600000",
+          "baseCoin": "APT"
+        },
+        {
+          "symbol": "OSMOUSDT",
+          "price": "0.21690000",
+          "baseCoin": "OSMO"
+        },
+        {
+          "symbol": "HFTUSDT",
+          "price": "0.06340000",
+          "baseCoin": "HFT"
+        },
+        {
+          "symbol": "PHBUSDT",
+          "price": "0.46300000",
+          "baseCoin": "PHB"
+        },
+        {
+          "symbol": "HOOKUSDT",
+          "price": "0.13080000",
+          "baseCoin": "HOOK"
+        },
+        {
+          "symbol": "MAGICUSDT",
+          "price": "0.26780000",
+          "baseCoin": "MAGIC"
+        },
+        {
+          "symbol": "HIFIUSDT",
+          "price": "0.16200000",
+          "baseCoin": "HIFI"
+        },
+        {
+          "symbol": "RPLUSDT",
+          "price": "4.02000000",
+          "baseCoin": "RPL"
+        },
+        {
+          "symbol": "PROSUSDT",
+          "price": "0.03720000",
+          "baseCoin": "PROS"
+        },
+        {
+          "symbol": "AGIXUSDT",
+          "price": "0.61410000",
+          "baseCoin": "AGIX"
+        },
+        {
+          "symbol": "GNSUSDT",
+          "price": "1.42800000",
+          "baseCoin": "GNS"
+        },
+        {
+          "symbol": "SYNUSDT",
+          "price": "0.20550000",
+          "baseCoin": "SYN"
+        },
+        {
+          "symbol": "VIBUSDT",
+          "price": "0.02283000",
+          "baseCoin": "VIB"
+        },
+        {
+          "symbol": "SSVUSDT",
+          "price": "5.66000000",
+          "baseCoin": "SSV"
+        },
+        {
+          "symbol": "LQTYUSDT",
+          "price": "0.59800000",
+          "baseCoin": "LQTY"
+        },
+        {
+          "symbol": "AMBUSDT",
+          "price": "0.00032000",
+          "baseCoin": "AMB"
+        },
+        {
+          "symbol": "BETHUSDT",
+          "price": "1556.27000000",
+          "baseCoin": "BETH"
+        },
+        {
+          "symbol": "USTCUSDT",
+          "price": "0.01192000",
+          "baseCoin": "USTC"
+        },
+        {
+          "symbol": "GASUSDT",
+          "price": "3.36400000",
+          "baseCoin": "GAS"
+        },
+        {
+          "symbol": "GLMUSDT",
+          "price": "0.26110000",
+          "baseCoin": "GLM"
+        },
+        {
+          "symbol": "PROMUSDT",
+          "price": "5.83200000",
+          "baseCoin": "PROM"
+        },
+        {
+          "symbol": "QKCUSDT",
+          "price": "0.00762600",
+          "baseCoin": "QKC"
+        },
+        {
+          "symbol": "UFTUSDT",
+          "price": "0.00890000",
+          "baseCoin": "UFT"
+        },
+        {
+          "symbol": "IDUSDT",
+          "price": "0.18140000",
+          "baseCoin": "ID"
+        },
+        {
+          "symbol": "ARBUSDT",
+          "price": "0.29820000",
+          "baseCoin": "ARB"
+        },
+        {
+          "symbol": "LOOMUSDT",
+          "price": "0.04831000",
+          "baseCoin": "LOOM"
+        },
+        {
+          "symbol": "OAXUSDT",
+          "price": "0.03580000",
+          "baseCoin": "OAX"
+        },
+        {
+          "symbol": "RDNTUSDT",
+          "price": "0.02115000",
+          "baseCoin": "RDNT"
+        },
+        {
+          "symbol": "WBTCUSDT",
+          "price": "88269.52000000",
+          "baseCoin": "WBTC"
+        },
+        {
+          "symbol": "EDUUSDT",
+          "price": "0.12280000",
+          "baseCoin": "EDU"
+        },
+        {
+          "symbol": "SUIUSDT",
+          "price": "2.23500000",
+          "baseCoin": "SUI"
+        },
+        {
+          "symbol": "AERGOUSDT",
+          "price": "0.06350000",
+          "baseCoin": "AERGO"
+        },
+        {
+          "symbol": "PEPEUSDT",
+          "price": "0.00000801",
+          "baseCoin": "PEPE"
+        },
+        {
+          "symbol": "FLOKIUSDT",
+          "price": "0.00005823",
+          "baseCoin": "FLOKI"
+        },
+        {
+          "symbol": "ASTUSDT",
+          "price": "0.02610000",
+          "baseCoin": "AST"
+        },
+        {
+          "symbol": "SNTUSDT",
+          "price": "0.02720000",
+          "baseCoin": "SNT"
+        },
+        {
+          "symbol": "COMBOUSDT",
+          "price": "0.02760000",
+          "baseCoin": "COMBO"
+        },
+        {
+          "symbol": "MAVUSDT",
+          "price": "0.05528000",
+          "baseCoin": "MAV"
+        },
+        {
+          "symbol": "PENDLEUSDT",
+          "price": "3.28000000",
+          "baseCoin": "PENDLE"
+        },
+        {
+          "symbol": "ARKMUSDT",
+          "price": "0.50800000",
+          "baseCoin": "ARKM"
+        },
+        {
+          "symbol": "WBETHUSDT",
+          "price": "1690.38000000",
+          "baseCoin": "WBETH"
+        },
+        {
+          "symbol": "WLDUSDT",
+          "price": "0.77300000",
+          "baseCoin": "WLD"
+        },
+        {
+          "symbol": "FDUSDUSDT",
+          "price": "0.99810000",
+          "baseCoin": "FDUSD"
+        },
+        {
+          "symbol": "SEIUSDT",
+          "price": "0.17660000",
+          "baseCoin": "SEI"
+        },
+        {
+          "symbol": "CYBERUSDT",
+          "price": "1.20300000",
+          "baseCoin": "CYBER"
+        },
+        {
+          "symbol": "ARKUSDT",
+          "price": "0.47480000",
+          "baseCoin": "ARK"
+        },
+        {
+          "symbol": "CREAMUSDT",
+          "price": "2.10000000",
+          "baseCoin": "CREAM"
+        },
+        {
+          "symbol": "GFTUSDT",
+          "price": "0.00196000",
+          "baseCoin": "GFT"
+        },
+        {
+          "symbol": "IQUSDT",
+          "price": "0.00425300",
+          "baseCoin": "IQ"
+        },
+        {
+          "symbol": "NTRNUSDT",
+          "price": "0.12970000",
+          "baseCoin": "NTRN"
+        },
+        {
+          "symbol": "TIAUSDT",
+          "price": "2.58000000",
+          "baseCoin": "TIA"
+        },
+        {
+          "symbol": "MEMEUSDT",
+          "price": "0.00201500",
+          "baseCoin": "MEME"
+        },
+        {
+          "symbol": "ORDIUSDT",
+          "price": "6.70000000",
+          "baseCoin": "ORDI"
+        },
+        {
+          "symbol": "BEAMXUSDT",
+          "price": "0.00644000",
+          "baseCoin": "BEAMX"
+        },
+        {
+          "symbol": "PIVXUSDT",
+          "price": "0.13220000",
+          "baseCoin": "PIVX"
+        },
+        {
+          "symbol": "VICUSDT",
+          "price": "0.21020000",
+          "baseCoin": "VIC"
+        },
+        {
+          "symbol": "BLURUSDT",
+          "price": "0.10640000",
+          "baseCoin": "BLUR"
+        },
+        {
+          "symbol": "VANRYUSDT",
+          "price": "0.02620000",
+          "baseCoin": "VANRY"
+        },
+        {
+          "symbol": "AEURUSDT",
+          "price": "1.04760000",
+          "baseCoin": "AEUR"
+        },
+        {
+          "symbol": "JTOUSDT",
+          "price": "1.69600000",
+          "baseCoin": "JTO"
+        },
+        {
+          "symbol": "1000SATSUSDT",
+          "price": "0.00003880",
+          "baseCoin": "1000SATS"
+        },
+        {
+          "symbol": "BONKUSDT",
+          "price": "0.00001251",
+          "baseCoin": "BONK"
+        },
+        {
+          "symbol": "ACEUSDT",
+          "price": "0.63100000",
+          "baseCoin": "ACE"
+        },
+        {
+          "symbol": "NFPUSDT",
+          "price": "0.07190000",
+          "baseCoin": "NFP"
+        },
+        {
+          "symbol": "AIUSDT",
+          "price": "0.14780000",
+          "baseCoin": "AI"
+        },
+        {
+          "symbol": "XAIUSDT",
+          "price": "0.05960000",
+          "baseCoin": "XAI"
+        },
+        {
+          "symbol": "MANTAUSDT",
+          "price": "0.21300000",
+          "baseCoin": "MANTA"
+        },
+        {
+          "symbol": "ALTUSDT",
+          "price": "0.02918000",
+          "baseCoin": "ALT"
+        },
+        {
+          "symbol": "JUPUSDT",
+          "price": "0.40460000",
+          "baseCoin": "JUP"
+        },
+        {
+          "symbol": "PYTHUSDT",
+          "price": "0.14100000",
+          "baseCoin": "PYTH"
+        },
+        {
+          "symbol": "RONINUSDT",
+          "price": "0.52100000",
+          "baseCoin": "RONIN"
+        },
+        {
+          "symbol": "DYMUSDT",
+          "price": "0.28100000",
+          "baseCoin": "DYM"
+        },
+        {
+          "symbol": "PIXELUSDT",
+          "price": "0.05109000",
+          "baseCoin": "PIXEL"
+        },
+        {
+          "symbol": "STRKUSDT",
+          "price": "0.13590000",
+          "baseCoin": "STRK"
+        },
+        {
+          "symbol": "PORTALUSDT",
+          "price": "0.09480000",
+          "baseCoin": "PORTAL"
+        },
+        {
+          "symbol": "PDAUSDT",
+          "price": "0.01295000",
+          "baseCoin": "PDA"
+        },
+        {
+          "symbol": "AXLUSDT",
+          "price": "0.30450000",
+          "baseCoin": "AXL"
+        },
+        {
+          "symbol": "WIFUSDT",
+          "price": "0.43000000",
+          "baseCoin": "WIF"
+        },
+        {
+          "symbol": "METISUSDT",
+          "price": "14.31000000",
+          "baseCoin": "METIS"
+        },
+        {
+          "symbol": "AEVOUSDT",
+          "price": "0.09870000",
+          "baseCoin": "AEVO"
+        },
+        {
+          "symbol": "BOMEUSDT",
+          "price": "0.00128200",
+          "baseCoin": "BOME"
+        },
+        {
+          "symbol": "ETHFIUSDT",
+          "price": "0.51000000",
+          "baseCoin": "ETHFI"
+        },
+        {
+          "symbol": "ENAUSDT",
+          "price": "0.28750000",
+          "baseCoin": "ENA"
+        },
+        {
+          "symbol": "WUSDT",
+          "price": "0.07820000",
+          "baseCoin": "W"
+        },
+        {
+          "symbol": "TNSRUSDT",
+          "price": "0.15930000",
+          "baseCoin": "TNSR"
+        },
+        {
+          "symbol": "SAGAUSDT",
+          "price": "0.23380000",
+          "baseCoin": "SAGA"
+        },
+        {
+          "symbol": "TAOUSDT",
+          "price": "316.70000000",
+          "baseCoin": "TAO"
+        },
+        {
+          "symbol": "OMNIUSDT",
+          "price": "2.23000000",
+          "baseCoin": "OMNI"
+        },
+        {
+          "symbol": "REZUSDT",
+          "price": "0.01305000",
+          "baseCoin": "REZ"
+        },
+        {
+          "symbol": "BBUSDT",
+          "price": "0.10960000",
+          "baseCoin": "BB"
+        },
+        {
+          "symbol": "NOTUSDT",
+          "price": "0.00195900",
+          "baseCoin": "NOT"
+        },
+        {
+          "symbol": "IOUSDT",
+          "price": "0.64400000",
+          "baseCoin": "IO"
+        },
+        {
+          "symbol": "ZKUSDT",
+          "price": "0.05220000",
+          "baseCoin": "ZK"
+        },
+        {
+          "symbol": "LISTAUSDT",
+          "price": "0.18490000",
+          "baseCoin": "LISTA"
+        },
+        {
+          "symbol": "ZROUSDT",
+          "price": "2.44100000",
+          "baseCoin": "ZRO"
+        },
+        {
+          "symbol": "GUSDT",
+          "price": "0.01384000",
+          "baseCoin": "G"
+        },
+        {
+          "symbol": "BANANAUSDT",
+          "price": "17.32000000",
+          "baseCoin": "BANANA"
+        },
+        {
+          "symbol": "RENDERUSDT",
+          "price": "4.37600000",
+          "baseCoin": "RENDER"
+        },
+        {
+          "symbol": "TONUSDT",
+          "price": "2.92600000",
+          "baseCoin": "TON"
+        },
+        {
+          "symbol": "DOGSUSDT",
+          "price": "0.00012060",
+          "baseCoin": "DOGS"
+        },
+        {
+          "symbol": "EURIUSDT",
+          "price": "1.15350000",
+          "baseCoin": "EURI"
+        },
+        {
+          "symbol": "SLFUSDT",
+          "price": "0.20880000",
+          "baseCoin": "SLF"
+        },
+        {
+          "symbol": "POLUSDT",
+          "price": "0.20420000",
+          "baseCoin": "POL"
+        },
+        {
+          "symbol": "NEIROUSDT",
+          "price": "0.00018988",
+          "baseCoin": "NEIRO"
+        },
+        {
+          "symbol": "TURBOUSDT",
+          "price": "0.00230900",
+          "baseCoin": "TURBO"
+        },
+        {
+          "symbol": "1MBABYDOGEUSDT",
+          "price": "0.00127730",
+          "baseCoin": "1MBABYDOGE"
+        },
+        {
+          "symbol": "CATIUSDT",
+          "price": "0.08550000",
+          "baseCoin": "CATI"
+        },
+        {
+          "symbol": "HMSTRUSDT",
+          "price": "0.00263500",
+          "baseCoin": "HMSTR"
+        },
+        {
+          "symbol": "EIGENUSDT",
+          "price": "0.83000000",
+          "baseCoin": "EIGEN"
+        },
+        {
+          "symbol": "SCRUSDT",
+          "price": "0.25300000",
+          "baseCoin": "SCR"
+        },
+        {
+          "symbol": "BNSOLUSDT",
+          "price": "145.40000000",
+          "baseCoin": "BNSOL"
+        },
+        {
+          "symbol": "LUMIAUSDT",
+          "price": "0.31900000",
+          "baseCoin": "LUMIA"
+        },
+        {
+          "symbol": "KAIAUSDT",
+          "price": "0.11310000",
+          "baseCoin": "KAIA"
+        },
+        {
+          "symbol": "COWUSDT",
+          "price": "0.27980000",
+          "baseCoin": "COW"
+        },
+        {
+          "symbol": "CETUSUSDT",
+          "price": "0.10500000",
+          "baseCoin": "CETUS"
+        },
+        {
+          "symbol": "PNUTUSDT",
+          "price": "0.13430000",
+          "baseCoin": "PNUT"
+        },
+        {
+          "symbol": "ACTUSDT",
+          "price": "0.05590000",
+          "baseCoin": "ACT"
+        },
+        {
+          "symbol": "USUALUSDT",
+          "price": "0.13400000",
+          "baseCoin": "USUAL"
+        },
+        {
+          "symbol": "THEUSDT",
+          "price": "0.25210000",
+          "baseCoin": "THE"
+        },
+        {
+          "symbol": "ACXUSDT",
+          "price": "0.20380000",
+          "baseCoin": "ACX"
+        },
+        {
+          "symbol": "ORCAUSDT",
+          "price": "2.68600000",
+          "baseCoin": "ORCA"
+        },
+        {
+          "symbol": "MOVEUSDT",
+          "price": "0.22790000",
+          "baseCoin": "MOVE"
+        },
+        {
+          "symbol": "MEUSDT",
+          "price": "0.79900000",
+          "baseCoin": "ME"
+        },
+        {
+          "symbol": "VELODROMEUSDT",
+          "price": "0.04520000",
+          "baseCoin": "VELODROME"
+        },
+        {
+          "symbol": "VANAUSDT",
+          "price": "5.16000000",
+          "baseCoin": "VANA"
+        },
+        {
+          "symbol": "1000CATUSDT",
+          "price": "0.00571000",
+          "baseCoin": "1000CAT"
+        },
+        {
+          "symbol": "PENGUUSDT",
+          "price": "0.00507500",
+          "baseCoin": "PENGU"
+        },
+        {
+          "symbol": "BIOUSDT",
+          "price": "0.05380000",
+          "baseCoin": "BIO"
+        },
+        {
+          "symbol": "DUSDT",
+          "price": "0.04544000",
+          "baseCoin": "D"
+        },
+        {
+          "symbol": "AIXBTUSDT",
+          "price": "0.08550000",
+          "baseCoin": "AIXBT"
+        },
+        {
+          "symbol": "CGPTUSDT",
+          "price": "0.08060000",
+          "baseCoin": "CGPT"
+        },
+        {
+          "symbol": "COOKIEUSDT",
+          "price": "0.10390000",
+          "baseCoin": "COOKIE"
+        },
+        {
+          "symbol": "SUSDT",
+          "price": "0.46170000",
+          "baseCoin": "S"
+        },
+        {
+          "symbol": "SOLVUSDT",
+          "price": "0.02935000",
+          "baseCoin": "SOLV"
+        },
+        {
+          "symbol": "TRUMPUSDT",
+          "price": "8.42000000",
+          "baseCoin": "TRUMP"
+        },
+        {
+          "symbol": "ANIMEUSDT",
+          "price": "0.01666000",
+          "baseCoin": "ANIME"
+        },
+        {
+          "symbol": "BERAUSDT",
+          "price": "3.52500000",
+          "baseCoin": "BERA"
+        },
+        {
+          "symbol": "1000CHEEMSUSDT",
+          "price": "0.00127000",
+          "baseCoin": "1000CHEEMS"
+        },
+        {
+          "symbol": "TSTUSDT",
+          "price": "0.06570000",
+          "baseCoin": "TST"
+        },
+        {
+          "symbol": "LAYERUSDT",
+          "price": "1.99160000",
+          "baseCoin": "LAYER"
+        },
+        {
+          "symbol": "HEIUSDT",
+          "price": "0.34230000",
+          "baseCoin": "HEI"
+        },
+        {
+          "symbol": "KAITOUSDT",
+          "price": "0.77300000",
+          "baseCoin": "KAITO"
+        },
+        {
+          "symbol": "SHELLUSDT",
+          "price": "0.14630000",
+          "baseCoin": "SHELL"
+        },
+        {
+          "symbol": "REDUSDT",
+          "price": "0.39850000",
+          "baseCoin": "RED"
+        },
+        {
+          "symbol": "GPSUSDT",
+          "price": "0.01730000",
+          "baseCoin": "GPS"
+        },
+        {
+          "symbol": "EPICUSDT",
+          "price": "1.31100000",
+          "baseCoin": "EPIC"
+        },
+        {
+          "symbol": "BMTUSDT",
+          "price": "0.08250000",
+          "baseCoin": "BMT"
+        },
+        {
+          "symbol": "FORMUSDT",
+          "price": "2.10170000",
+          "baseCoin": "FORM"
+        },
+        {
+          "symbol": "XUSDUSDT",
+          "price": "1.00000000",
+          "baseCoin": "XUSD"
+        },
+        {
+          "symbol": "NILUSDT",
+          "price": "0.37600000",
+          "baseCoin": "NIL"
+        },
+        {
+          "symbol": "PARTIUSDT",
+          "price": "0.17330000",
+          "baseCoin": "PARTI"
+        },
+        {
+          "symbol": "MUBARAKUSDT",
+          "price": "0.02980000",
+          "baseCoin": "MUBARAK"
+        },
+        {
+          "symbol": "TUTUSDT",
+          "price": "0.02621000",
+          "baseCoin": "TUT"
+        },
+        {
+          "symbol": "BROCCOLI714USDT",
+          "price": "0.02666000",
+          "baseCoin": "BROCCOLI714"
+        },
+        {
+          "symbol": "BANANAS31USDT",
+          "price": "0.00526000",
+          "baseCoin": "BANANAS31"
+        },
+        {
+          "symbol": "GUNUSDT",
+          "price": "0.05802000",
+          "baseCoin": "GUN"
+        },
+        {
+          "symbol": "BABYUSDT",
+          "price": "0.08074000",
+          "baseCoin": "BABY"
+        },
+        {
+          "symbol": "ONDOUSDT",
+          "price": "0.86050000",
+          "baseCoin": "ONDO"
+        },
+        {
+          "symbol": "BIGTIMEUSDT",
+          "price": "0.06994000",
+          "baseCoin": "BIGTIME"
+        },
+        {
+          "symbol": "VIRTUALUSDT",
+          "price": "0.57500000",
+          "baseCoin": "VIRTUAL"
+        },
+        {
+          "symbol": "KERNELUSDT",
+          "price": "0.19060000",
+          "baseCoin": "KERNEL"
+        },
+        {
+          "symbol": "WCTUSDT",
+          "price": "0.43780000",
+          "baseCoin": "WCT"
+        }
+    ]
+}
