@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hybrid SMC Analyzer - Crypto Analysis</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" />
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        body {
+            background: #000;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Particle Background */
+        .particle-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100px) translateX(20px);
+                opacity: 0;
+            }
+        }
+
+        @keyframes floatUpSlow {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            15% {
+                opacity: 0.6;
+            }
+            85% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100px) translateX(-20px);
+                opacity: 0;
+            }
+        }
+
+        /* Glowing Orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.4;
+            animation: pulseOrb 6s ease-in-out infinite;
+        }
+
+        @keyframes pulseOrb {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.3); opacity: 0.5; }
+        }
+
+        /* Main Content */
+        .main-content {
+            position: relative;
+            z-index: 10;
+            padding: 100px 20px 40px;
+            min-height: 100vh;
+        }
+
+        /* Card Styles */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+        }
+
+        .glass-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            color: white;
+            padding: 14px 18px;
+            font-size: 15px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .glass-input:focus {
+            border-color: rgba(34, 211, 238, 0.5);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 20px rgba(34, 211, 238, 0.15);
+        }
+
+        .glass-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #22d3ee 0%, #a855f7 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, rgba(34, 211, 238, 0.15) 0%, rgba(168, 85, 247, 0.15) 100%);
+            border: 1px solid rgba(168, 85, 247, 0.4);
+            border-radius: 12px;
+            padding: 14px 28px;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            border-color: #22d3ee;
+            box-shadow: 0 0 30px rgba(34, 211, 238, 0.3), 0 0 60px rgba(168, 85, 247, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 14px 28px;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(34, 211, 238, 0.5);
+        }
+
+        /* Suggestions Dropdown */
+        .suggestions-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(20, 20, 20, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            max-height: 250px;
+            overflow-y: auto;
+            z-index: 1000;
+            margin-top: 8px;
+        }
+
+        .suggestions-dropdown::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .suggestions-dropdown::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .suggestions-dropdown::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #22d3ee, #a855f7);
+            border-radius: 3px;
+        }
+
+        .suggestion-item {
+            padding: 14px 18px;
+            cursor: pointer;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.2s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .suggestion-item:last-child {
+            border-bottom: none;
+        }
+
+        .suggestion-item:hover {
+            background: rgba(34, 211, 238, 0.1);
+            border-left: 3px solid #22d3ee;
+        }
+
+        .suggestion-coin {
+            font-weight: 700;
+            color: #22d3ee;
+            font-size: 15px;
+        }
+
+        .suggestion-pair {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 12px;
+        }
+
+        /* Result Card */
+        .result-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 4px solid #22d3ee;
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 24px;
+        }
+
+        /* Data Points */
+        .data-point {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 14px;
+        }
+
+        .data-point:last-child {
+            border-bottom: none;
+        }
+
+        .data-label {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .data-value {
+            color: white;
+            font-weight: 500;
+        }
+
+        /* Trade Levels */
+        .trade-levels {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .level-entry {
+            color: #22d3ee;
+            font-weight: 700;
+        }
+
+        .level-sl {
+            color: #ef4444;
+            font-weight: 700;
+        }
+
+        .level-tp {
+            color: #10b981;
+            font-weight: 700;
+        }
+
+        /* Confidence Alert */
+        .confidence-alert {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.15) 0%, rgba(245, 158, 11, 0.15) 100%);
+            border: 1px solid rgba(251, 191, 36, 0.4);
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 20px;
+            color: #fbbf24;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* Table Styles */
+        .data-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .data-table thead tr {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .data-table th {
+            padding: 16px;
+            text-align: left;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .data-table td {
+            padding: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 14px;
+        }
+
+        .data-table tbody tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .data-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Status Select */
+        .status-select {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            padding: 8px 32px 8px 12px;
+            font-size: 13px;
+            color: white;
+            cursor: pointer;
+            outline: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23999' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            transition: all 0.3s ease;
+        }
+
+        .status-select:hover {
+            border-color: rgba(34, 211, 238, 0.5);
+        }
+
+        .status-select.no-entry {
+            border-left: 3px solid #6b7280;
+        }
+
+        .status-select.tp {
+            border-left: 3px solid #10b981;
+            color: #10b981;
+        }
+
+        .status-select.sl {
+            border-left: 3px solid #ef4444;
+            color: #ef4444;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: #1a1a1a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 32px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideUp 0.4s ease;
+        }
+
+        /* Cooldown Modal */
+        .cooldown-modal {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border: 2px solid #22d3ee;
+            border-radius: 20px;
+            padding: 32px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            animation: slideUp 0.4s ease;
+        }
+
+        /* Profile Button */
+        .profile-btn {
+            position: fixed;
+            top: 25px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #22d3ee 0%, #a855f7 100%);
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(34, 211, 238, 0.3);
+        }
+
+        .profile-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(34, 211, 238, 0.5);
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-top-color: #22d3ee;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Animations */
+        .fade-enter-active, .fade-leave-active {
+            transition: opacity 0.3s ease;
+        }
+
+        .fade-enter-from, .fade-leave-to {
+            opacity: 0;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: linear-gradient(180deg, #22d3ee, #a855f7);
+            border-radius: 2px;
+        }
+
+        /* Detail Link */
+        .detail-link {
+            color: #22d3ee;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .detail-link:hover {
+            color: #a855f7;
+            text-decoration: underline;
+        }
+
+        /* Error/Success Text */
+        .text-error {
+            color: #ef4444;
+        }
+
+        .text-success {
+            color: #10b981;
+        }
+
+        .text-warning {
+            color: #fbbf24;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- Animated Particle Background -->
+        <div class="particle-bg">
+            <!-- Glowing Orbs -->
+            <div class="orb" style="width: 500px; height: 500px; background: rgba(34, 211, 238, 0.15); top: -10%; left: -10%;"></div>
+            <div class="orb" style="width: 400px; height: 400px; background: rgba(168, 85, 247, 0.15); top: 40%; right: -15%; animation-delay: 1s;"></div>
+            <div class="orb" style="width: 350px; height: 350px; background: rgba(236, 72, 153, 0.1); bottom: 10%; left: 20%; animation-delay: 2s;"></div>
+            
+            <!-- Floating Particles -->
+            <div v-for="n in 40" :key="'p'+n" class="particle" 
+                 :style="getParticleStyle(n)">
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Container -->
+            <div class="max-w-3xl mx-auto">
+                <!-- Header -->
+                <div class="text-center mb-10">
+                    <h1 class="text-3xl md:text-4xl font-bold mb-3">
+                        <span class="gradient-text">Hybrid SMC</span> 
+                        <span class="text-white">Analyzer</span>
+                    </h1>
+                    <p class="text-white/50 text-sm">Advanced Crypto Market Analysis with Smart Money Concepts</p>
+                </div>
+
+                <!-- Main Card -->
+                <div class="glass-card p-6 md:p-8">
+                    <!-- Input Section -->
+                    <div class="relative mb-6">
+                        <label class="block text-white/70 text-sm font-medium mb-3">
+                            <i class="fas fa-coins mr-2 text-cyan-400"></i>
+                            Coin Symbol (e.g., BTC, ETH, DOGE)
+                        </label>
+                        <div class="relative">
+                            <input 
+                                type="text" 
+                                v-model="coinInput"
+                                @input="onInputChange"
+                                @focus="showSuggestions = true"
+                                @keydown.enter.prevent="analyze"
+                                @keydown.down.prevent="navigateSuggestion(1)"
+                                @keydown.up.prevent="navigateSuggestion(-1)"
+                                @keydown.esc="showSuggestions = false"
+                                placeholder="BTC"
+                                class="glass-input w-full pr-12"
+                                :class="{ 'border-red-500': error }"
+                            >
+                            <button 
+                                @click="analyze"
+                                :disabled="isAnalyzing"
+                                class="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-lg text-white hover:opacity-90 transition-opacity disabled:opacity-50"
+                            >
+                                <i v-if="!isAnalyzing" class="fas fa-search"></i>
+                                <span v-else class="spinner"></span>
+                            </button>
+                            
+                            <!-- Suggestions Dropdown -->
+                            <div v-if="showSuggestions && suggestions.length > 0" class="suggestions-dropdown">
+                                <div 
+                                    v-for="(item, index) in suggestions" 
+                                    :key="index"
+                                    class="suggestion-item"
+                                    :class="{ 'bg-cyan-500/10 border-l-3 border-cyan-400': selectedSuggestionIndex === index }"
+                                    @click="selectCoin(item.coin)"
+                                    @mouseenter="selectedSuggestionIndex = index"
+                                >
+                                    <span class="suggestion-coin">{{ item.coin }}</span>
+                                    <span class="suggestion-pair">{{ item.pair }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p v-if="error" class="text-red-400 text-sm mt-2">
+                            <i class="fas fa-exclamation-circle mr-1"></i>
+                            {{ error }}
+                        </p>
+                    </div>
+
+                    <!-- Error Message -->
+                    <div v-if="resultError" class="bg-red-500/10 border border-red-500/30 rounded-xl p-4 mb-6">
+                        <p class="text-red-400">
+                            <i class="fas fa-exclamation-triangle mr-2"></i>
+                            {{ resultError }}
+                        </p>
+                    </div>
+
+                    <!-- Result Display -->
+                    <transition name="fade">
+                        <div v-if="analysisResult" class="result-card">
+                            <h2 class="section-title">
+                                Analysis for {{ analysisResult.coin_name }}USDT
+                            </h2>
+
+                            <!-- Main Data -->
+                            <div class="space-y-0">
+                                <div class="data-point flex justify-between">
+                                    <span class="data-label">Current Price</span>
+                                    <span class="data-value font-mono">${{ formatNumber(analysisResult.entry_price) }} USDT</span>
+                                </div>
+                                <div class="data-point flex justify-between">
+                                    <span class="data-label">Market Structure (1H/4H)</span>
+                                    <span class="data-value">{{ analysisResult.market_structure?.['1h'] || 'N/A' }} / {{ analysisResult.market_structure?.['4h'] || 'N/A' }}</span>
+                                </div>
+                                <div class="data-point flex justify-between">
+                                    <span class="data-label">RSI (1H)</span>
+                                    <span class="data-value font-mono">{{ analysisResult.indicators?.RSI_1h?.toFixed(2) || 'N/A' }}</span>
+                                </div>
+                                <div class="data-point flex justify-between">
+                                    <span class="data-label">MACD</span>
+                                    <span class="data-value font-mono">{{ analysisResult.indicators?.MACD_1h?.toFixed(4) || 'N/A' }}</span>
+                                </div>
+                                <div class="data-point flex justify-between">
+                                    <span class="data-label">Funding Rate</span>
+                                    <span class="data-value font-mono">{{ analysisResult.funding_rate?.fundingRate ? (analysisResult.funding_rate.fundingRate * 100).toFixed(4) + '%' : 'N/A' }}</span>
+                                </div>
+                                <div class="data-point flex justify-between">
+                                    <span class="data-label">Long/Short Ratio</span>
+                                    <span class="data-value font-mono">{{ analysisResult.long_short_ratio?.longShortRatio?.toFixed(2) || 'N/A' }}</span>
+                                </div>
+                                <div class="data-point flex justify-between">
+                                    <span class="data-label">Volatility Prediction</span>
+                                    <span class="data-value">{{ analysisResult.volatility_pred || 'N/A' }}</span>
+                                </div>
+                            </div>
+
+                            <!-- Confidence Alerts -->
+                            <div v-if="analysisResult.analysis?.includes('Dikonfirmasi Liquidity Sweep')" class="confidence-alert">
+                                <i class="fas fa-gem mr-2"></i>
+                                PREMIUM SETUP: OB dikonfirmasi oleh Liquidity Sweep! (High Confidence)
+                            </div>
+
+                            <div v-if="analysisResult.analysis?.includes('COUNTER-TREND')" class="confidence-alert" style="background: rgba(239, 68, 68, 0.15); border-color: rgba(239, 68, 68, 0.4); color: #ef4444;">
+                                <i class="fas fa-exclamation-triangle mr-2"></i>
+                                RISK WARNING: COUNTER-TREND
+                            </div>
+
+                            <!-- Trade Levels -->
+                            <div v-if="analysisResult.trade_levels" class="trade-levels">
+                                <div class="flex justify-between items-center mb-4 pb-3 border-b border-white/10">
+                                    <span class="text-white/70">REKOMENDASI</span>
+                                    <span :class="['font-bold text-lg', analysisResult.trade_levels.recommendation === 'Long' ? 'text-cyan-400' : 'text-red-400']">
+                                        {{ analysisResult.trade_levels.recommendation.toUpperCase() }} LIMIT
+                                    </span>
+                                </div>
+                                
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="bg-white/5 rounded-lg p-3">
+                                        <div class="text-white/50 text-xs mb-1">ENTRY ({{ analysisResult.trade_levels.ob_type }})</div>
+                                        <div class="level-entry font-mono text-lg">${{ analysisResult.trade_levels.entry.toFixed(4) }}</div>
+                                    </div>
+                                    <div class="bg-white/5 rounded-lg p-3">
+                                        <div class="text-white/50 text-xs mb-1">SL (ATR-Based)</div>
+                                        <div class="level-sl font-mono text-lg">${{ analysisResult.trade_levels.sl.toFixed(4) }}</div>
+                                    </div>
+                                    <div class="bg-white/5 rounded-lg p-3">
+                                        <div class="text-white/50 text-xs mb-1">TP1 ({{ analysisResult.trade_levels.rrr.toFixed(2) }} RRR)</div>
+                                        <div class="level-tp font-mono text-lg">${{ analysisResult.trade_levels.tp1.toFixed(4) }}</div>
+                                    </div>
+                                    <div class="bg-white/5 rounded-lg p-3">
+                                        <div class="text-white/50 text-xs mb-1">Position Size</div>
+                                        <div class="text-white font-mono text-lg">{{ analysisResult.trade_levels.position_size_units }} units</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Analysis Text -->
+                            <p class="text-white/60 mt-4 leading-relaxed">{{ analysisResult.analysis }}</p>
+                        </div>
+                    </transition>
+
+                    <!-- History Button -->
+                    <button 
+                        @click="viewHistory" 
+                        :disabled="isLoadingHistory"
+                        class="btn-secondary w-full mt-6 flex items-center justify-center gap-2"
+                    >
+                        <i v-if="!isLoadingHistory" class="fas fa-history"></i>
+                        <span v-else class="spinner"></span>
+                        {{ isLoadingHistory ? 'Loading...' : 'View History' }}
+                    </button>
+
+                    <!-- History Section -->
+                    <transition name="fade">
+                        <div v-if="showHistory && historyData.length > 0">
+                            <h3 class="section-title mt-8 mb-4">5 Analisa Terakhir</h3>
+                            
+                            <div class="overflow-x-auto">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Coin</th>
+                                            <th>Price</th>
+                                            <th>Rec.</th>
+                                            <th>Time</th>
+                                            <th>Status</th>
+                                            <th>Detail</th>
+                                            <th>Entry Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="row in historyData" :key="row.id">
+                                            <td class="font-semibold text-cyan-400">{{ row.coin_name }}</td>
+                                            <td class="font-mono">${{ formatNumber(row.entry_price) }}</td>
+                                            <td :class="row.recommendation === 'Long' ? 'text-cyan-400 font-semibold' : 'text-red-400 font-semibold'">
+                                                {{ row.recommendation }}
+                                            </td>
+                                            <td class="text-white/60 text-sm">{{ formatDate(row.created_at) }}</td>
+                                            <td>
+                                                <span :class="row.has_trade_levels ? 'text-emerald-400' : 'text-red-400'">
+                                                    {{ row.has_trade_levels ? 'Success' : 'Failed' }}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="detail-link" @click="viewDetails(row.id)">
+                                                    Lihat Detail
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <select 
+                                                    class="status-select"
+                                                    :class="row.status_entry === 'no_entry' ? 'no-entry' : row.status_entry === 'TP' ? 'tp' : 'sl'"
+                                                    :value="row.status_entry"
+                                                    @change="updateStatus(row.id, $event.target.value, $event.target)"
+                                                >
+                                                    <option value="no_entry">No Entry</option>
+                                                    <option value="TP">TP</option>
+                                                    <option value="SL">SL</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </transition>
+
+                    <!-- Empty History Message -->
+                    <transition name="fade">
+                        <div v-if="showHistory && historyData.length === 0 && !isLoadingHistory" class="text-center py-8 text-white/50">
+                            <i class="fas fa-history text-4xl mb-3 opacity-50"></i>
+                            <p>Tidak ada history pencarian</p>
+                        </div>
+                    </transition>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Button -->
+        <button class="profile-btn" @click="goToProfile" title="Profile">
+            <i class="fas fa-user"></i>
+        </button>
+
+        <!-- Cooldown Modal -->
+        <div class="modal-overlay" :class="{ show: showCooldown }">
+            <div class="cooldown-modal">
+                <div class="text-5xl mb-4">⏱️</div>
+                <h3 class="text-xl font-bold text-white mb-3">Tunggu 5 Menit</h3>
+                <p class="text-white/60 mb-4">
+                    Anda baru saja menganalisa <span class="text-cyan-400 font-semibold">{{ cooldownCoin }}</span>
+                </p>
+                <div class="text-2xl font-mono text-cyan-400 mb-6" id="cd-text">
+                    Sisa Waktu: {{ countdownText }}
+                </div>
+                <button @click="closeCooldown" class="btn-primary w-full">
+                    OK
+                </button>
+            </div>
+        </div>
+
+        <!-- Detail Modal -->
+        <div class="modal-overlay" :class="{ show: showDetailModal }">
+            <div class="modal-content">
+                <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                    <i class="fas fa-chart-line text-cyan-400"></i>
+                    Detail {{ detailData.coin_name }}
+                </h3>
+                <pre class="text-white/70 text-sm whitespace-pre-wrap font-mono bg-black/30 p-4 rounded-lg border border-white/10">{{ detailContent }}</pre>
+                <button @click="showDetailModal = false" class="btn-secondary w-full mt-4">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const { createApp, ref, reactive, computed, onMounted } = Vue;
+
+        createApp({
+            setup() {
+                // State
+                const coinInput = ref('');
+                const error = ref('');
+                const resultError = ref('');
+                const isAnalyzing = ref(false);
+                const isLoadingHistory = ref(false);
+                const showHistory = ref(false);
+                const historyData = ref([]);
+                const analysisResult = ref(null);
+                const coinList = ref([]);
+                const suggestions = ref([]);
+                const showSuggestions = ref(false);
+                const selectedSuggestionIndex = ref(-1);
+
+                // Modal states
+                const showCooldown = ref(false);
+                const cooldownCoin = ref('');
+                const cooldownUntil = ref(null);
+                const countdownText = ref('');
+                const showDetailModal = ref(false);
+                const detailData = ref({});
+                const detailContent = ref('');
+
+                // Particle styles
+                const getParticleStyle = (n) => {
+                    const sizes = [3, 4, 5, 6, 8];
+                    const colors = [
+                        'rgba(34, 211, 238, 0.8)',
+                        'rgba(168, 85, 247, 0.8)',
+                        'rgba(236, 72, 153, 0.6)',
+                        'rgba(16, 185, 129, 0.6)',
+                        'rgba(245, 158, 11, 0.6)'
+                    ];
+                    const delays = Math.random() * 15;
+                    const durations = 10 + Math.random() * 10;
+                    
+                    return {
+                        left: Math.random() * 100 + '%',
+                        width: sizes[Math.floor(Math.random() * sizes.length)] + 'px',
+                        height: sizes[Math.random() * sizes.length] + 'px',
+                        background: colors[Math.floor(Math.random() * colors.length)],
+                        animation: `floatUp ${durations}s ${delays}s linear infinite`,
+                        filter: `blur(${Math.random() * 2}px)`
+                    };
+                };
+
+                // Load coin data
+                const loadCoinList = async () => {
+                    try {
+                        const response = await fetch('/static/data-coin.json');
+                        const json = await response.json();
+                        coinList.value = json.data.map(item => ({
+                            coin: item.baseCoin,
+                            pair: item.symbol
+                        }));
+                        console.log('Coin list loaded:', coinList.value.length, 'coins');
+                    } catch (err) {
+                        console.error('Failed to load coin list:', err);
+                    }
+                };
+
+                // Input change handler
+                const onInputChange = () => {
+                    error.value = '';
+                    resultError.value = '';
+                    selectedSuggestionIndex.value(-1);
+                    
+                    const text = coinInput.value.trim().toUpperCase();
+                    
+                    if (text.length === 0) {
+                        suggestions.value = [];
+                        showSuggestions.value = false;
+                        return;
+                    }
+
+                    suggestions.value = coinList.value
+                        .filter(c => c.coin && c.coin.toUpperCase().startsWith(text))
+                        .slice(0, 10);
+                    
+                    showSuggestions.value = suggestions.value.length > 0;
+                };
+
+                // Select coin from suggestions
+                const selectCoin = (symbol) => {
+                    coinInput.value = symbol;
+                    showSuggestions.value = false;
+                    selectedSuggestionIndex.value = -1;
+                    coinInput.value.focus();
+                };
+
+                // Navigate suggestions with keyboard
+                const navigateSuggestion = (direction) => {
+                    if (suggestions.value.length === 0) return;
+                    
+                    let newIndex = selectedSuggestionIndex.value + direction;
+                    if (newIndex < 0) newIndex = suggestions.value.length - 1;
+                    if (newIndex >= suggestions.value.length) newIndex = 0;
+                    
+                    selectedSuggestionIndex.value = newIndex;
+                };
+
+                // Analyze function
+                const analyze = async () => {
+                    const coinName = coinInput.value.trim().toUpperCase();
+                    
+                    if (!coinName) {
+                        error.value = 'Silakan masukkan simbol koin';
+                        return;
+                    }
+
+                    if (!/^[A-Z]{2,10}$/.test(coinName)) {
+                        error.value = 'Format simbol tidak valid. Gunakan huruf besar (2-10 karakter), contoh: BTC, ETH';
+                        return;
+                    }
+
+                    error.value = '';
+                    resultError.value = '';
+                    isAnalyzing.value = true;
+                    showSuggestions.value = false;
+
+                    try {
+                        const formData = new FormData();
+                        formData.append('coin_name', coinName);
+
+                        const response = await fetch('/analyze', {
+                            method: 'POST',
+                            body: formData
+                        });
+
+                        if (!response.ok) {
+                            const errorData = await response.json();
+                            throw new Error(errorData.error || `HTTP Error! Status: ${response.status}`);
+                        }
+
+                        const data = await response.json();
+
+                        // Check cooldown
+                        if (data.cooldown) {
+                            showCooldownModal(data.coin, data.until);
+                            return;
+                        }
+
+                        analysisResult.value = data;
+                        showHistory.value = false;
+
+                    } catch (err) {
+                        resultError.value = err.message;
+                    } finally {
+                        isAnalyzing.value = false;
+                    }
+                };
+
+                // Cooldown modal
+                const showCooldownModal = (coin, until) => {
+                    cooldownCoin.value = coin;
+                    cooldownUntil.value = new Date(until);
+                    showCooldown.value = true;
+                    updateCountdown();
+                };
+
+                const updateCountdown = () => {
+                    const interval = setInterval(() => {
+                        const now = new Date();
+                        const remaining = Math.floor((cooldownUntil.value - now) / 1000);
+
+                        if (remaining <= 0) {
+                            countdownText.value = 'Anda bisa menganalisa lagi!';
+                            clearInterval(interval);
+                            return;
+                        }
+
+                        const m = Math.floor(remaining / 60);
+                        const s = remaining % 60;
+                        countdownText.value = `${m} menit ${s} detik`;
+                    }, 1000);
+                };
+
+                const closeCooldown = () => {
+                    showCooldown.value = false;
+                };
+
+                // View history
+                const viewHistory = async () => {
+                    isLoadingHistory.value = true;
+                    showHistory.value = !showHistory.value;
+                    
+                    if (!showHistory.value) {
+                        isLoadingHistory.value = false;
+                        return;
+                    }
+
+                    try {
+                        const response = await fetch('/history');
+                        const data = await response.json();
+                        historyData.value = data || [];
+                    } catch (err) {
+                        console.error('Failed to load history:', err);
+                        historyData.value = [];
+                    } finally {
+                        isLoadingHistory.value = false;
+                    }
+                };
+
+                // View details
+                const viewDetails = async (recordId) => {
+                    try {
+                        const response = await fetch(`/history/${recordId}`);
+                        const data = await response.json();
+
+                        if (data.error) {
+                            alert(data.error);
+                            return;
+                        }
+
+                        detailData.value = data;
+                        detailContent.value = `
+Analysis for ${data.coin_name}USDT
+Current Price: ${data.entry_price}
+Market Structure (1H/4H): ${data.market_structure_1h} / ${data.market_structure_4h}
+
+RSI (1H): ${data.rsi_1h}
+MACD: ${data.macd_1h}
+
+Funding Rate: ${data.funding_rate}
+Long/Short Ratio: ${data.long_short_ratio}
+
+Volatility Prediction: ${data.volatility_prediction}
+
+Recommendation: ${data.recommendation}
+
+--- TRADE LEVELS ---
+ENTRY: ${data.entry}
+SL: ${data.sl}
+TP1: ${data.tp1}
+RRR: ${data.rrr}
+OB Type: ${data.ob_type}
+Position Size Units: ${data.position_size_units}
+                        `.trim();
+
+                        showDetailModal.value = true;
+                    } catch (err) {
+                        alert('Error: ' + err.message);
+                    }
+                };
+
+                // Update status
+                const updateStatus = async (id, value, element) => {
+                    try {
+                        const formData = new FormData();
+                        formData.append('status', value);
+
+                        await fetch(`/update_status/${id}`, {
+                            method: 'POST',
+                            body: formData
+                        });
+                    } catch (err) {
+                        console.error('Failed to update status:', err);
+                    }
+                };
+
+                // Go to profile
+                const goToProfile = () => {
+                    window.location.href = '/profile';
+                };
+
+                // Utility functions
+                const formatNumber = (num) => {
+                    if (num === undefined || num === null) return 'N/A';
+                    return parseFloat(num).toFixed(2);
+                };
+
+                const formatDate = (dateStr) => {
+                    return new Date(dateStr).toLocaleString('id-ID');
+                };
+
+                // Initialize
+                onMounted(() => {
+                    loadCoinList();
+                });
+
+                return {
+                    // State
+                    coinInput,
+                    error,
+                    resultError,
+                    isAnalyzing,
+                    isLoadingHistory,
+                    showHistory,
+                    historyData,
+                    analysisResult,
+                    suggestions,
+                    showSuggestions,
+                    selectedSuggestionIndex,
+                    showCooldown,
+                    cooldownCoin,
+                    countdownText,
+                    showDetailModal,
+                    detailData,
+                    detailContent,
+
+                    // Methods
+                    getParticleStyle,
+                    onInputChange,
+                    selectCoin,
+                    navigateSuggestion,
+                    analyze,
+                    viewHistory,
+                    viewDetails,
+                    updateStatus,
+                    goToProfile,
+                    closeCooldown,
+                    formatNumber,
+                    formatDate
+                };
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>

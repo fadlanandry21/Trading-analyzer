@@ -13,6 +13,7 @@ from flask import Flask, request, jsonify, render_template, redirect, url_for, s
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
 from datetime import datetime, timedelta
+from flask_cors import CORS 
 
 
 
@@ -82,8 +83,8 @@ def save_to_db(output, recommendation, trade_levels):
 
 app = Flask(__name__)
 app.secret_key = os.getenv("FLASK_SECRET", "replace-with-a-random-secret")
-# Menggunakan CCXT untuk akses data publik Binance Futures
 exchange = ccxt.binance({'options': {'defaultType': 'future'}})
+CORS(app)
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("HybridAnalyzerV8")
@@ -103,7 +104,7 @@ TF_LOW = "1h"
 # ==============================================================
 # DATA FETCH CORE (Menggunakan CCXT)
 # ==============================================================
-
+ 
 def fetch_candles_ccxt(symbol: str, timeframe: str, limit: int) -> List[Dict[str, float]]:
     """Fetch OHLCV data using ccxt"""
     try:
